@@ -154,88 +154,83 @@ export function HomePage() {
                 key={index}
                 className="group relative p-8 bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 shadow-xl hover:shadow-2xl hover:border-[#003876]/70 hover:from-gray-800/60 hover:to-gray-900/60 transition-all duration-500"
               >
-                <div className="flex flex-col-reverse md:flex-row items-start gap-6">
-                  <div className="flex-1">
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {paper.badges?.map((badge, badgeIndex) =>
-                        badge.url ? (
-                          <a
-                            key={badgeIndex}
-                            href={badge.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block"
-                          >
-                            <Badge
-                              style={{
-                                backgroundColor: badge.color,
-                              }}
-                              className="text-white border-0 hover:opacity-80 transition-opacity cursor-pointer px-3 py-1"
-                            >
-                              {badge.text}
-                            </Badge>
-                          </a>
-                        ) : (
+                {/* 상단: 제목/메타 */}
+                <div className="flex flex-col space-y-2 mb-6">
+                  <div className="flex flex-wrap gap-2">
+                    {paper.badges?.map((badge, badgeIndex) =>
+                      badge.url ? (
+                        <a
+                          key={badgeIndex}
+                          href={badge.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block"
+                        >
                           <Badge
-                            key={badgeIndex}
                             style={{ backgroundColor: badge.color }}
-                            className="text-white border-0 px-3 py-1"
+                            className="text-white border-0 hover:opacity-80 transition-opacity cursor-pointer px-3 py-1"
                           >
                             {badge.text}
                           </Badge>
-                        )
-                      )}
-                    </div>
+                        </a>
+                      ) : (
+                        <Badge
+                          key={badgeIndex}
+                          style={{ backgroundColor: badge.color }}
+                          className="text-white border-0 px-3 py-1"
+                        >
+                          {badge.text}
+                        </Badge>
+                      )
+                    )}
+                  </div>
 
-                    <h3 className="text-white mb-3 group-hover:text-blue-300 transition-colors">
-                      {paper.title}
-                    </h3>
-                    <p className="text-gray-300 mb-2 text-lg">
-                      {paper.author}
-                    </p>
-                    <p className="text-gray-400 mb-6">
-                      {paper.note} ({paper.year})
-                    </p>
+                  <h3 className="text-white text-2xl font-semibold group-hover:text-blue-300 transition-colors">
+                    {paper.title}
+                  </h3>
+                  <p className="text-gray-300 text-lg">{paper.author}</p>
+                  <p className="text-gray-400">{paper.note} ({paper.year})</p>
+                </div>
 
-                    {/* Content Details */}
-                    {paper.content && (
-                      <div className="space-y-4 mt-6 pt-6 border-t border-gray-700/50">
-                        {paper.content.background && (
-                          <div>
-                            <h4 className="text-sky-400 font-semibold mb-2 text-sm">Background</h4>
-                            <p className="text-gray-300 text-sm leading-relaxed">
-                              {paper.content.background}
-                            </p>
-                          </div>
-                        )}
-                        {paper.content.motivation && (
-                          <div>
-                            <h4 className="text-sky-400 font-semibold mb-2 text-sm">Motivation</h4>
-                            <p className="text-gray-300 text-sm leading-relaxed">
-                              {paper.content.motivation}
-                            </p>
-                          </div>
-                        )}
-                        {paper.content.solution && (
-                          <div>
-                            <h4 className="text-sky-400 font-semibold mb-2 text-sm">Solution</h4>
-                            <p className="text-gray-300 text-sm leading-relaxed">
-                              {paper.content.solution}
-                            </p>
-                          </div>
-                        )}
+                {/* 하단: 좌(내용요약) / 우(로고) */}
+                <div className="flex flex-col md:flex-row items-start md:items-stretch gap-6">
+                  {/* 내용요약 */}
+                  <div className="flex-1 space-y-4 mt-2 pt-4 md:mt-0 md:pt-0 border-t md:border-t-0 border-gray-700/50">
+                    {paper.content?.background && (
+                      <div>
+                        <h4 className="text-sky-400 font-semibold mb-2 text-sm">Background</h4>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          {paper.content.background}
+                        </p>
+                      </div>
+                    )}
+                    {paper.content?.motivation && (
+                      <div>
+                        <h4 className="text-sky-400 font-semibold mb-2 text-sm">Motivation</h4>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          {paper.content.motivation}
+                        </p>
+                      </div>
+                    )}
+                    {paper.content?.solution && (
+                      <div>
+                        <h4 className="text-sky-400 font-semibold mb-2 text-sm">Solution</h4>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          {paper.content.solution}
+                        </p>
                       </div>
                     )}
                   </div>
 
-                  {/* Logo Bubble */}
+                  {/* 로고(크기 제한된 버블 + 다이얼로그) */}
                   {paper.selected && (
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
                           className="flex-shrink-0 w-48 h-32 md:w-56 md:h-36 rounded-2xl overflow-hidden shadow-2xl
                                      hover:scale-105 transition-transform duration-300 cursor-pointer
-                                     bg-white/5 backdrop-blur-sm border border-gray-700/50 p-4"
+                                     bg-white/5 backdrop-blur-sm border border-gray-700/50 p-4 self-stretch md:self-auto"
+                          aria-label={`${paper.model ?? "Selected"} Logo preview`}
                         >
                           <img
                             src={paper.selected}
@@ -244,7 +239,7 @@ export function HomePage() {
                           />
                         </button>
                       </DialogTrigger>
-                  
+
                       <DialogContent className="max-w-2xl w-full bg-gray-900/95 border border-gray-700">
                         <DialogTitle className="sr-only">{paper.model ?? "Selected"} Logo</DialogTitle>
                         <DialogDescription className="sr-only">
