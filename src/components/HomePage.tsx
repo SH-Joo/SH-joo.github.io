@@ -1,9 +1,9 @@
 import { Mail, Github, GraduationCap } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "./ui/dialog";
-import profileImage from "../images/profile_image.png";
+import profileImage from "../images/profile_image.jpg";
 import facsLogo from "../images/FACS_Logo.png";
-import oceanBg from "../images/ocean.png";
+import oceanBg from "../images/wave.jpg";
 import { papers } from "../data/papers";
 
 export function HomePage() {
