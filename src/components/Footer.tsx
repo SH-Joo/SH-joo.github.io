@@ -1,4 +1,4 @@
-import yonseiLogo from "figma:asset/772c9160e9337a0a525eb70a793a5006403776a2.png";
+import yonseiLogo from "src/images/logo_yonsei.png";
 
 export function Footer() {
   return (
