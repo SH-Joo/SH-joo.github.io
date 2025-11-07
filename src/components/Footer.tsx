@@ -1,4 +1,4 @@
-import yonseiLogo from "src/images/logo_yonsei.png";
+import yonseiLogo from "../images/logo_yonsei.png";
 
 export function Footer() {
   return (
