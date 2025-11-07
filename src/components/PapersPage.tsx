@@ -43,7 +43,10 @@ export function PapersPage() {
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
-          <h1 className="text-white mb-4 text-5xl md:text-6xl font-bold tracking-tight">
+          <h1 
+            className="text-white mb-4 text-5xl md:text-6xl font-bold tracking-tight"
+            style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}
+          >
             Publications
           </h1>
           <p className="text-gray-300 text-xl max-w-3xl">
