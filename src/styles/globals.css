@@ -223,8 +223,6 @@ html {
   will-change: transform;
 }
 
-@layer base {
-  .font-serif {
-    font-family: 'Georgia', 'Nanum Myeongjo', serif;
-  }
+.font-serif {
+  font-family: 'Georgia', 'Nanum Myeongjo', serif;
 }
