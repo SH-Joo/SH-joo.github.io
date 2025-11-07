@@ -3,7 +3,7 @@ import { Badge } from "./ui/badge";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "./ui/dialog";
 import profileImage from "../images/profile_image.png";
 import facsLogo from "../images/FACS_Logo.png";
-import oceanBg from "figma:asset/2d5cb3580f891835b9855ee9d8ffafad50f70c00.png";
+import oceanBg from "../images/ocean.png";
 import { papers } from "../data/papers";
 
 export function HomePage() {
