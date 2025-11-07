@@ -174,12 +174,12 @@ export function PapersPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-white mb-4 group-hover:text-blue-200 transition-colors duration-300 text-lg md:text-xl font-semibold leading-relaxed font-serif">
+                      <h3 className="text-white mb-4 group-hover:text-blue-200 transition-colors duration-300 text-lg md:text-xl font-semibold leading-relaxed font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
                         {paper.title}
                       </h3>
 
                       {/* Authors */}
-                      <p className="text-gray-300 mb-4 text-base font-serif">
+                      <p className="text-gray-300 mb-4 text-base font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
                         {paper.author}
                       </p>
 
