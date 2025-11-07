@@ -174,12 +174,12 @@ export function PapersPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-white mb-4 group-hover:text-blue-200 transition-colors duration-300 text-lg md:text-xl font-semibold leading-relaxed">
+                      <h3 className="text-white mb-4 group-hover:text-blue-200 transition-colors duration-300 text-lg md:text-xl font-semibold leading-relaxed font-serif">
                         {paper.title}
                       </h3>
 
                       {/* Authors */}
-                      <p className="text-gray-300 mb-4 text-base">
+                      <p className="text-gray-300 mb-4 text-base font-serif">
                         {paper.author}
                       </p>
 
@@ -189,7 +189,7 @@ export function PapersPage() {
                         {paper.booktitle && (
                           <div className="flex items-start gap-2.5 text-blue-300 bg-blue-950/30 rounded-xl p-3 border border-blue-700/30">
                             <FileText className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400" />
-                            <p className="text-sm font-medium">{paper.booktitle}</p>
+                            <p className="text-sm font-medium font-serif">{paper.booktitle}</p>
                           </div>
                         )}
                         
