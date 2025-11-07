@@ -101,7 +101,7 @@ export function HomePage() {
 
       {/* About Me Section */}
       <section className="py-28 bg-gray-800/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="mb-16">
             <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
             <h2 className="text-white mb-4 text-4xl font-bold font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>About Me</h2>
