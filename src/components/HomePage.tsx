@@ -101,7 +101,7 @@ export function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
           <div className="mb-16">
             <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
-            <h2 className="text-white mb-4 text-4xl font-bold">About Me</h2>
+            <h2 className="text-white mb-4 text-4xl font-bold font-serif">About Me</h2>
           </div>
           <div className="space-y-6">
             <p className="text-gray-300 leading-relaxed text-lg">
@@ -142,7 +142,7 @@ export function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="mb-16">
             <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
-            <h2 className="text-white mb-4 text-4xl font-bold">Selected Papers</h2>
+            <h2 className="text-white mb-4 text-4xl font-bold font-serif">Selected Papers</h2>
             <p className="text-gray-300 text-xl">
               Recent research highlights and publications
             </p>
@@ -185,10 +185,10 @@ export function HomePage() {
                     )}
                   </div>
 
-                  <h3 className="text-white text-2xl font-semibold group-hover:text-blue-300 transition-colors">
+                  <h3 className="text-white text-2xl font-semibold group-hover:text-blue-300 transition-colors font-serif">
                     {paper.title}
                   </h3>
-                  <p className="text-gray-300 text-lg">{paper.author}</p>
+                  <p className="text-gray-300 text-lg font-serif">{paper.author}</p>
                   <p className="text-gray-400">{paper.note} ({paper.year})</p>
                 </div>
 
