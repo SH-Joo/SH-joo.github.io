@@ -29,15 +29,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+        
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
+          # cache: 'npm'  <-- 'package-lock.json'이 없어 에러가 나므로 이 줄을 주석 처리합니다.
           
       - name: Install dependencies
-        run: npm ci
+        run: npm install  # <-- 'npm ci' 대신 'npm install'을 사용합니다.
         
       - name: Build
         run: npm run build
