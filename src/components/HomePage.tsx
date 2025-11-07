@@ -50,7 +50,10 @@ export function HomePage() {
                 </div>
               </div>
 
-              <h1 className="text-white mb-6 text-6xl md:text-7xl font-bold tracking-tight">
+              <h1 
+                className="text-white mb-6 text-6xl md:text-7xl font-bold tracking-tight"
+                style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}
+              >
                 Siheon Joo
               </h1>
               <p className="text-gray-200 mb-3 text-xl font-medium">
