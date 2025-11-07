@@ -2,7 +2,6 @@ import { Mail, Github, GraduationCap } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "./ui/dialog";
 import profileImage from "../images/profile_image.jpg";
-import facsLogo from "../images/FACS_Logo.png";
 import oceanBg from "../images/wave.jpg";
 import { papers } from "../data/papers";
 
@@ -233,9 +232,9 @@ export function HomePage() {
                   {paper.selected && (
                     <Dialog>
                       <DialogTrigger asChild>
-                        <button className="flex-shrink-0 w-full md:w-48 self-stretch rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer bg-white/5 backdrop-blur-sm">
+                        <button className="flex-shrink-0 w-full md:w-72 self-stretch rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer bg-white/5 backdrop-blur-sm">
                           <img
-                            src={facsLogo}
+                            src={paper.selected}
                             alt={`${paper.model} Logo`}
                             className="w-full h-full object-contain p-4"
                           />
@@ -248,7 +247,7 @@ export function HomePage() {
                         </DialogDescription>
                         <div className="flex items-center justify-center p-8">
                           <img
-                            src={facsLogo}
+                            src={paper.selected}
                             alt={`${paper.model} Logo`}
                             className="max-w-full max-h-[80vh] object-contain"
                           />
