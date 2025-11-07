@@ -155,7 +155,7 @@ export function HomePage() {
                 key={index}
                 className="group relative p-8 bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 shadow-xl hover:shadow-2xl hover:border-[#003876]/70 hover:from-gray-800/60 hover:to-gray-900/60 transition-all duration-500"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex flex-col-reverse md:flex-row items-start gap-6">
                   <div className="flex-1">
                     <div className="flex flex-wrap gap-2 mb-5">
                       {paper.badges?.map((badge, badgeIndex) =>
@@ -233,7 +233,7 @@ export function HomePage() {
                   {paper.selected && (
                     <Dialog>
                       <DialogTrigger asChild>
-                        <button className="flex-shrink-0 w-32 md:w-48 self-stretch rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer bg-white/5 backdrop-blur-sm">
+                        <button className="flex-shrink-0 w-full md:w-48 self-stretch rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer bg-white/5 backdrop-blur-sm">
                           <img
                             src={facsLogo}
                             alt={`${paper.model} Logo`}
