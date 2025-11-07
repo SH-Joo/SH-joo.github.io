@@ -1,8 +1,8 @@
 import { Mail, Github, GraduationCap } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "./ui/dialog";
-import profileImage from "figma:asset/6b5ffc90b22f4632338a2cdb4f2a6353b637172b.png";
-import facsLogo from "figma:asset/5437d15928fe72fe7b51642d441469d3e3258468.png";
+import profileImage from "src/images/profile_image.png";
+import facsLogo from "src/images/FACS_Logo.png";
 import oceanBg from "figma:asset/2d5cb3580f891835b9855ee9d8ffafad50f70c00.png";
 import { papers } from "../data/papers";
 
