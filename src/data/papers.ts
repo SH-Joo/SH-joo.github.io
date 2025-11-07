@@ -33,7 +33,7 @@ export const papers: Paper[] = [
     model: "FACS-Net",
     SOTA: "👑 FACS-Net - 2025 SOTA for Thin Crack Segmentation",
     project: "https://github.com/SH-Joo/FACS",
-    selected: "../data/selected_logo/FACS.png",
+    selected: "../images/FACS_Logo.png",
     content: {
       background: "Early detection of micro-cracks is crucial, but vision models struggle to identify them due to spectral bias.",
       motivation: "Most benchmarks, including SOTA, do not account for spectral bias, leading to vulnerability in detecting thin cracks.",
