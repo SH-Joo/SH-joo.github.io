@@ -1,7 +1,7 @@
 import { Badge } from "./ui/badge";
 import { FileText, BookOpen, Award, FileCode, Archive } from "lucide-react";
 import { papers, Paper } from "../data/papers";
-import oceanBg from "figma:asset/2d5cb3580f891835b9855ee9d8ffafad50f70c00.png";
+import oceanBg from "../images/wave.jpg";
 
 export function PapersPage() {
   // Group papers by year
