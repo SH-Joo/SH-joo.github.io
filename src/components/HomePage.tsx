@@ -232,7 +232,7 @@ export function HomePage() {
                   {paper.selected && (
                     <Dialog>
                       <DialogTrigger asChild>
-                        <button className="flex-shrink-0 w-full md:w-72 self-stretch rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer bg-white/5 backdrop-blur-sm">
+                        <button className="flex-shrink-0 w-full md:w-56 self-stretch rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer bg-white/5 backdrop-blur-sm">
                           <img
                             src={paper.selected}
                             alt={`${paper.model} Logo`}
