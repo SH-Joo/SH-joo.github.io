@@ -232,24 +232,29 @@ export function HomePage() {
                   {paper.selected && (
                     <Dialog>
                       <DialogTrigger asChild>
-                        <button className="flex-shrink-0 w-full md:w-56 self-stretch rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer bg-white/5 backdrop-blur-sm">
+                        <button
+                          className="flex-shrink-0 w-48 h-32 md:w-56 md:h-36 rounded-2xl overflow-hidden shadow-2xl
+                                     hover:scale-105 transition-transform duration-300 cursor-pointer
+                                     bg-white/5 backdrop-blur-sm border border-gray-700/50 p-4"
+                        >
                           <img
                             src={paper.selected}
-                            alt={`${paper.model} Logo`}
-                            className="w-full h-full object-contain p-4"
+                            alt={`${paper.model ?? "Selected"} Logo`}
+                            className="w-full h-full object-contain"
                           />
                         </button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-4xl w-full bg-gray-900/95 border border-gray-700">
-                        <DialogTitle className="sr-only">{paper.model} Logo</DialogTitle>
+                  
+                      <DialogContent className="max-w-2xl w-full bg-gray-900/95 border border-gray-700">
+                        <DialogTitle className="sr-only">{paper.model ?? "Selected"} Logo</DialogTitle>
                         <DialogDescription className="sr-only">
-                          Full size view of {paper.model} logo
+                          Full size view of logo
                         </DialogDescription>
-                        <div className="flex items-center justify-center p-8">
+                        <div className="flex items-center justify-center p-6">
                           <img
                             src={paper.selected}
-                            alt={`${paper.model} Logo`}
-                            className="max-w-full max-h-[80vh] object-contain"
+                            alt={`${paper.model ?? "Selected"} Logo`}
+                            className="max-h-[50vh] w-auto object-contain"
                           />
                         </div>
                       </DialogContent>
