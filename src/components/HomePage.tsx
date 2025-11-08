@@ -21,7 +21,7 @@ export function HomePage() {
             backgroundPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/75 via-[#001a3d]/70 to-gray-900/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/60 via-[#001a3d]/70 to-gray-900/80"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/15 via-transparent to-transparent"></div>
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
