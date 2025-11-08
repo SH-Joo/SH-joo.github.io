@@ -2,7 +2,7 @@ import { Mail, Github, GraduationCap } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "./ui/dialog";
 import profileImage from "../images/profile_image.jpg";
-import waveGif from "../images/wave.gif";
+import oceanBg from "../images/wave.jpg";
 import { papers } from "../data/papers";
 
 export function HomePage() {
@@ -14,12 +14,11 @@ export function HomePage() {
       <section className="relative py-24 md:py-36 overflow-hidden">
         {/* Animated Ocean Background */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 ocean-wave-animated"
           style={{
-            backgroundImage: `url(${waveGif})`,
-            backgroundRepeat: "repeat-x",        
-            backgroundSize: "auto 100%",        
-            backgroundPosition: "center bottom", 
+            backgroundImage: `url(${oceanBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/60 via-[#001a3d]/70 to-gray-900/80"></div>
