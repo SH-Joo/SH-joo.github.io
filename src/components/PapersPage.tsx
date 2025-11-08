@@ -50,7 +50,7 @@ export function PapersPage() {
             Publications
           </h1>
           <p className="text-gray-300 text-xl max-w-3xl">
-            Exploring the frontiers of Computer Vision and Smart Infrastructure
+            Bridging AI and Engineering for Real-World Impact
           </p>
         </div>
       </div>
