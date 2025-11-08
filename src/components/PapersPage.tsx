@@ -39,7 +39,7 @@ export function PapersPage() {
             backgroundPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/90 via-[#001a3d]/85 to-gray-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/75 via-[#001a3d]/85 to-gray-900"></div>
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
