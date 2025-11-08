@@ -20,7 +20,7 @@ export function BlogPage() {
         {/* Header */}
         <div className="mb-16">
           <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
-          <h1 className="text-white mb-6 text-5xl font-bold">
+          <h1 className="text-white mb-6 text-5xl font-bold" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
             Blog
           </h1>
           <p className="text-gray-300 max-w-3xl text-lg">
