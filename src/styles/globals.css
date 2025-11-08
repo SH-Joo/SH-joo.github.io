@@ -221,7 +221,7 @@ html {
 }
 
 .ocean-wave-animated {
-  animation: ocean-wave-flow 25s ease-in-out infinite;
+  animation: ocean-wave-flow 10s ease-in-out infinite;
   transform-origin: center center;
   will-change: transform;
 }
