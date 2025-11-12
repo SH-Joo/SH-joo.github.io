@@ -73,7 +73,8 @@ export const papers: Paper[] = [
         text: "Under Graduate",
         color: "#6bb0ab"
       }
-    ]
+    ],
+    
   },
   {
     type: "conference",
@@ -92,7 +93,8 @@ export const papers: Paper[] = [
         text: "🏆 Best Paper Award",
         color: "#ff7300"
       }
-    ]
+    ],
+    TopJournal_Civil: "Automation_in_Construction"
   },
   {
     type: "conference",
