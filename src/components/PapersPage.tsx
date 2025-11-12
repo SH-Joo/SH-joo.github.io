@@ -26,26 +26,53 @@ export function PapersPage() {
   const conferencePapers = papers.filter((p) => p.type === "conference").length;
   const preprintPapers = papers.filter((p) => p.type === "preprint").length;
 
-  // --- NEW: Calculate Top Stats ---
-  // We use `(p as any)` to access properties that might not be in the base 'Paper' type
-  const topJournalCivil = papers.filter(
-    (p) => (p as any).TopJournal_Civil,
-  ).length;
-  const topJournalAI = papers.filter((p) => (p as any).TopJournal_AI).length;
-  const topConferenceAI = papers.filter(
-    (p) => (p as any).TopConference_AI,
-  ).length;
+  // --- NEW: Helper function to count occurrences of top stats ---
+  const countTopStats = (papers: Paper[], key: string): Record<string, number> => {
+    return papers.reduce((acc: Record<string, number>, paper) => {
+      // Use `(p as any)` to access dynamic keys
+      const value = (paper as any)[key];
+      // Check if the value is a non-empty string
+      if (value && typeof value === 'string') {
+        // Increment count for that specific journal/conference name
+        acc[value] = (acc[value] || 0) + 1;
+      }
+      return acc;
+    }, {});
+  };
 
-  // --- NEW: Helper function to render top stats ---
-  const renderTopStat = (label: string, count: number) => {
-    return (
-      <div className="text-gray-300 text-center md:text-left">
-        <span className="font-medium">{label}: </span>
-        {count > 0 ? (
-          <span className="font-bold text-indigo-300">{count}</span>
-        ) : (
+  // --- NEW: Calculate Top Stats based on occurrences ---
+  const topJournalCivilStats = countTopStats(papers, "TopJournal_Civil");
+  const topJournalAIStats = countTopStats(papers, "TopJournal_AI");
+  const topConferenceAIStats = countTopStats(papers, "TopConference_AI");
+
+
+  // --- NEW: Helper function to render top stats (MODIFIED) ---
+  const renderTopStat = (label: string, stats: Record<string, number>) => {
+    const entries = Object.entries(stats);
+
+    // Style with Serif font
+    const style = { fontFamily: "'Georgia', 'Nanum Myeongjo', serif" };
+
+    // Handle "not yet" case
+    if (entries.length === 0) {
+      return (
+        <div className="text-gray-300 text-center md:text-left" style={style}>
+          <span className="font-medium">{label}: </span>
           <span className="text-gray-500 italic">not yet</span>
-        )}
+        </div>
+      );
+    }
+
+    // Format string like: "JournalName (2), AnotherJournal (1)"
+    // Replace underscores with spaces for cleaner display
+    const statString = entries
+      .map(([name, count]) => `${name.replace(/_/g, ' ')} (${count})`)
+      .join(', ');
+
+    return (
+      <div className="text-gray-300 text-center md:text-left" style={style}>
+        <span className="font-medium">{label}: </span>
+        <span className="font-bold text-indigo-300">{statString}</span>
       </div>
     );
   };
@@ -131,20 +158,20 @@ export function PapersPage() {
                 {preprintPapers}
               </div>
               <div className="text-gray-300 font-medium text-md">
-                Preprints
-              </div>
-            </div>
-          </div>
-
-          {/* --- NEW: Top Publications Bubble --- */}
+          {/* --- NEW: Top Publications Bubble (MODIFIED) --- */}
           <div className="mt-6 p-5 bg-gradient-to-br from-indigo-500/10 to-transparent rounded-2xl border border-indigo-500/30">
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-              {renderTopStat("Top Journal (Civil)", topJournalCivil)}
-              {renderTopStat("Top Journal (AI)", topJournalAI)}
-              {renderTopStat("Top Conference (AI)", topConferenceAI)}
+            {/* MODIFIED: Changed to flex-col for vertical layout, items-start for alignment */}
+            <div className="flex flex-col items-center md:items-start gap-y-3">
+              {renderTopStat("Top Journal (Civil)", topJournalCivilStats)}
+              {renderTopStat("Top Journal (AI)", topJournalAIStats)}
+              {renderTopStat("Top Conference (AI)", topConferenceAIStats)}
             </div>
-            <p className="text-center text-gray-400 text-sm mt-4 italic">
-              * Top 저널/학회 실적은 주저자 논문 기준입니다.
+            {/* MODIFIED: Text changed to English and Serif font applied */}
+            <p
+              className="text-center text-gray-400 text-sm mt-4 italic"
+              style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}
+            >
+              * Based on first-authored papers.
             </p>
           </div>
         </div>
