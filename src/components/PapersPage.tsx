@@ -56,8 +56,8 @@ export function PapersPage() {
     // Handle "not yet" case
     if (entries.length === 0) {
       return (
-        <div className="text-gray-300 text-center md:text-left" style={style}>
-          <span className="font-medium">{label}: </span>
+        <div className="text-gray-300 text-start md:text-left" style={style}>
+          <span className="font-bold">{label}: </span>
           <span className="text-gray-500 italic">not yet</span>
         </div>
       );
@@ -70,9 +70,9 @@ export function PapersPage() {
       .join(', ');
 
     return (
-      <div className="text-gray-300 text-center md:text-left" style={style}>
-        <span className="font-medium">{label}: </span>
-        <span className="font-bold text-indigo-300">{statString}</span>
+      <div className="text-gray-300 text-start md:text-left" style={style}>
+        <span className="font-bold">{label}: </span>
+        <span className="font-medium text-indigo-300">{statString}</span>
       </div>
     );
   };
@@ -178,7 +178,7 @@ export function PapersPage() {
               className="text-center text-gray-400 text-sm mt-4 italic"
               style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}
             >
-              * Based on first-authored papers.
+              * Based on leading-authored papers.
             </p>
           </div>
         </div>
