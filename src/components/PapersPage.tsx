@@ -39,11 +39,11 @@ export function PapersPage() {
             backgroundPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/60 via-[#001a3d]/85 to-gray-900"></div> 
-        
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001a3d]/60 via-[#001a3d]/85 to-gray-900"></div>
+
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
-          <h1 
+          <h1
             className="text-white mb-4 text-5xl md:text-6xl font-bold tracking-tight"
             style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}
           >
@@ -56,61 +56,57 @@ export function PapersPage() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl -mt-12 relative z-20">
-        {/* Stats Section */}
+        {/* Stats Section (MODIFIED) */}
         <div className="mb-20 p-6 md:p-8 bg-gradient-to-br from-gray-800/80 to-gray-900/70 backdrop-blur-xl rounded-3xl border border-gray-700/50 shadow-2xl relative overflow-hidden">
           {/* Decorative gradient overlay */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#003876]/20 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-blue-600/10 to-transparent rounded-full blur-3xl"></div>
-          
+
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {/* Total */}
-            <div className="group flex flex-col items-center justify-center p-5 md:p-6 bg-gradient-to-br from-sky-500/15 to-transparent hover:from-sky-500/25 rounded-2xl border border-sky-400/40 hover:border-sky-400/60 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-sky-500/20">
-              <div className="mb-3 p-2.5 bg-gradient-to-br from-sky-500 to-blue-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            {/* Total (MODIFIED) */}
+            <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-sky-500/15 to-transparent hover:from-sky-500/25 rounded-2xl border border-sky-400/40 hover:border-sky-400/60 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-sky-500/20 gap-3">
+              <div className="p-2.5 bg-gradient-to-br from-sky-500 to-blue-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <BookOpen className="w-5 h-5 text-white" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-sky-400 to-blue-300 bg-clip-text text-transparent mb-2">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-br from-sky-400 to-blue-300 bg-clip-text text-transparent">
                 {totalPapers}
               </div>
-              <div className="text-gray-300 font-medium">
-                Total
-              </div>
+              <div className="text-gray-300 font-medium text-md">Total</div>
             </div>
 
-            {/* Journal */}
-            <div className="group flex flex-col items-center justify-center p-5 md:p-6 bg-gradient-to-br from-cyan-500/10 to-transparent hover:from-cyan-500/20 rounded-2xl border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20">
-              <div className="mb-3 p-2.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            {/* Journal (MODIFIED) */}
+            <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-cyan-500/10 to-transparent hover:from-cyan-500/20 rounded-2xl border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20 gap-3">
+              <div className="p-2.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Award className="w-5 h-5 text-white" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-cyan-400 to-blue-400 bg-clip-text text-transparent mb-2">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-br from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                 {journalPapers}
               </div>
-              <div className="text-gray-300 font-medium">
-                Journal
-              </div>
+              <div className="text-gray-300 font-medium text-md">Journal</div>
             </div>
 
-            {/* Conference */}
-            <div className="group flex flex-col items-center justify-center p-5 md:p-6 bg-gradient-to-br from-emerald-500/10 to-transparent hover:from-emerald-500/20 rounded-2xl border border-emerald-500/30 hover:border-emerald-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/20">
-              <div className="mb-3 p-2.5 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            {/* Conference (MODIFIED) */}
+            <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-emerald-500/10 to-transparent hover:from-emerald-500/20 rounded-2xl border border-emerald-500/30 hover:border-emerald-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/20 gap-3">
+              <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <FileCode className="w-5 h-5 text-white" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-emerald-400 to-green-400 bg-clip-text text-transparent mb-2">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-br from-emerald-400 to-green-400 bg-clip-text text-transparent">
                 {conferencePapers}
               </div>
-              <div className="text-gray-300 font-medium">
+              <div className="text-gray-300 font-medium text-md">
                 Conference
               </div>
             </div>
 
-            {/* Preprints */}
-            <div className="group flex flex-col items-center justify-center p-5 md:p-6 bg-gradient-to-br from-orange-500/10 to-transparent hover:from-orange-500/20 rounded-2xl border border-orange-500/30 hover:border-orange-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/20">
-              <div className="mb-3 p-2.5 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            {/* Preprints (MODIFIED) */}
+            <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-orange-500/10 to-transparent hover:from-orange-500/20 rounded-2xl border border-orange-500/30 hover:border-orange-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/20 gap-3">
+              <div className="p-2.5 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Archive className="w-5 h-5 text-white" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-orange-400 to-red-400 bg-clip-text text-transparent mb-2">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-br from-orange-400 to-red-400 bg-clip-text text-transparent">
                 {preprintPapers}
               </div>
-              <div className="text-gray-300 font-medium">
+              <div className="text-gray-300 font-medium text-md">
                 Preprints
               </div>
             </div>
@@ -140,7 +136,7 @@ export function PapersPage() {
                   >
                     {/* Decorative gradient on hover */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#003876]/0 group-hover:from-[#003876]/10 to-transparent rounded-full blur-3xl transition-all duration-700 pointer-events-none"></div>
-                    
+
                     <div className="relative">
                       {/* Badges */}
                       <div className="flex flex-wrap gap-2.5 mb-5">
@@ -177,12 +173,22 @@ export function PapersPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-white mb-4 group-hover:text-blue-200 transition-colors duration-300 text-lg md:text-xl font-semibold leading-relaxed font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
+                      <h3
+                        className="text-white mb-4 group-hover:text-blue-200 transition-colors duration-300 text-lg md:text-xl font-semibold leading-relaxed font-serif"
+                        style={{
+                          fontFamily: "'Georgia', 'Nanum Myeongjo', serif",
+                        }}
+                      >
                         {paper.title}
                       </h3>
 
                       {/* Authors */}
-                      <p className="text-gray-300 mb-4 text-base font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
+                      <p
+                        className="text-gray-300 mb-4 text-base font-serif"
+                        style={{
+                          fontFamily: "'Georgia', 'Nanum Myeongjo', serif",
+                        }}
+                      >
                         {paper.author}
                       </p>
 
@@ -192,10 +198,12 @@ export function PapersPage() {
                         {paper.booktitle && (
                           <div className="flex items-start gap-2.5 text-blue-300 bg-blue-950/30 rounded-xl p-3 border border-blue-700/30">
                             <FileText className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400" />
-                            <p className="text-sm font-medium font-serif">{paper.booktitle}</p>
+                            <p className="text-sm font-medium font-serif">
+                              {paper.booktitle}
+                            </p>
                           </div>
                         )}
-                        
+
                         {/* Additional Note */}
                         {paper.note && (
                           <div className="flex items-start gap-2.5 text-gray-400 bg-gray-900/30 rounded-xl p-3 border border-gray-700/30">
