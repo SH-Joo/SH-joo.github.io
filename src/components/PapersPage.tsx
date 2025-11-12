@@ -175,10 +175,10 @@ export function PapersPage() {
             </div>
             {/* MODIFIED: Text changed to English and Serif font applied */}
             <p
-              className="text-center text-gray-400 text-sm mt-4 italic"
+              className="text-start text-gray-400 text-sm mt-4 italic"
               style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}
             >
-              * Based on leading-authored papers.
+              * Top journal/conference stats based on leading-authored papers.
             </p>
           </div>
         </div>
