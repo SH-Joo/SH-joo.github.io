@@ -26,6 +26,30 @@ export function PapersPage() {
   const conferencePapers = papers.filter((p) => p.type === "conference").length;
   const preprintPapers = papers.filter((p) => p.type === "preprint").length;
 
+  // --- NEW: Calculate Top Stats ---
+  // We use `(p as any)` to access properties that might not be in the base 'Paper' type
+  const topJournalCivil = papers.filter(
+    (p) => (p as any).TopJournal_Civil,
+  ).length;
+  const topJournalAI = papers.filter((p) => (p as any).TopJournal_AI).length;
+  const topConferenceAI = papers.filter(
+    (p) => (p as any).TopConference_AI,
+  ).length;
+
+  // --- NEW: Helper function to render top stats ---
+  const renderTopStat = (label: string, count: number) => {
+    return (
+      <div className="text-gray-300 text-center md:text-left">
+        <span className="font-medium">{label}: </span>
+        {count > 0 ? (
+          <span className="font-bold text-indigo-300">{count}</span>
+        ) : (
+          <span className="text-gray-500 italic">not yet</span>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#001a3d] via-gray-900 to-gray-800">
       {/* Hero Header with Ocean Background */}
@@ -63,7 +87,7 @@ export function PapersPage() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-blue-600/10 to-transparent rounded-full blur-3xl"></div>
 
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {/* Total (MODIFIED) */}
+            {/* Total */}
             <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-sky-500/15 to-transparent hover:from-sky-500/25 rounded-2xl border border-sky-400/40 hover:border-sky-400/60 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-sky-500/20 gap-3">
               <div className="p-2.5 bg-gradient-to-br from-sky-500 to-blue-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <BookOpen className="w-5 h-5 text-white" />
@@ -74,7 +98,7 @@ export function PapersPage() {
               <div className="text-gray-300 font-medium text-md">Total</div>
             </div>
 
-            {/* Journal (MODIFIED) */}
+            {/* Journal */}
             <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-cyan-500/10 to-transparent hover:from-cyan-500/20 rounded-2xl border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20 gap-3">
               <div className="p-2.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Award className="w-5 h-5 text-white" />
@@ -85,7 +109,7 @@ export function PapersPage() {
               <div className="text-gray-300 font-medium text-md">Journal</div>
             </div>
 
-            {/* Conference (MODIFIED) */}
+            {/* Conference */}
             <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-emerald-500/10 to-transparent hover:from-emerald-500/20 rounded-2xl border border-emerald-500/30 hover:border-emerald-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/20 gap-3">
               <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <FileCode className="w-5 h-5 text-white" />
@@ -98,7 +122,7 @@ export function PapersPage() {
               </div>
             </div>
 
-            {/* Preprints (MODIFIED) */}
+            {/* Preprints */}
             <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-orange-500/10 to-transparent hover:from-orange-500/20 rounded-2xl border border-orange-500/30 hover:border-orange-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/20 gap-3">
               <div className="p-2.5 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Archive className="w-5 h-5 text-white" />
@@ -110,6 +134,18 @@ export function PapersPage() {
                 Preprints
               </div>
             </div>
+          </div>
+
+          {/* --- NEW: Top Publications Bubble --- */}
+          <div className="mt-6 p-5 bg-gradient-to-br from-indigo-500/10 to-transparent rounded-2xl border border-indigo-500/30">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              {renderTopStat("Top Journal (Civil)", topJournalCivil)}
+              {renderTopStat("Top Journal (AI)", topJournalAI)}
+              {renderTopStat("Top Conference (AI)", topConferenceAI)}
+            </div>
+            <p className="text-center text-gray-400 text-sm mt-4 italic">
+              * Top 저널/학회 실적은 주저자 논문 기준입니다.
+            </p>
           </div>
         </div>
 
