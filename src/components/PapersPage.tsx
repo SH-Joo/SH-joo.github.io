@@ -168,7 +168,7 @@ export function PapersPage() {
           {/* --- NEW: Top Publications Bubble (Correct Position) --- */}
           <div className="mt-6 p-5 bg-gradient-to-br from-indigo-500/10 to-transparent rounded-2xl border border-indigo-500/30">
             {/* MODIFIED: Changed to flex-col for vertical layout, items-start for alignment */}
-            <div className="flex flex-col items-center md:items-start gap-y-3">
+            <div className="flex flex-col items-start md:items-start gap-y-3">
               {renderTopStat("Top Journal (Civil)", topJournalCivilStats)}
               {renderTopStat("Top Journal (AI)", topJournalAIStats)}
               {renderTopStat("Top Conference (AI)", topConferenceAIStats)}
