@@ -113,6 +113,7 @@ export function PapersPage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#003876]/20 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-blue-600/10 to-transparent rounded-full blur-3xl"></div>
 
+          {/* --- 4-BUBBLE GRID --- */}
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {/* Total */}
             <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-sky-500/15 to-transparent hover:from-sky-500/25 rounded-2xl border border-sky-400/40 hover:border-sky-400/60 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-sky-500/20 gap-3">
@@ -149,7 +150,7 @@ export function PapersPage() {
               </div>
             </div>
 
-            {/* Preprints */}
+            {/* Preprints (FIXED) */}
             <div className="group flex flex-row items-center justify-center p-4 md:p-5 bg-gradient-to-br from-orange-500/10 to-transparent hover:from-orange-500/20 rounded-2xl border border-orange-500/30 hover:border-orange-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/20 gap-3">
               <div className="p-2.5 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Archive className="w-5 h-5 text-white" />
@@ -158,7 +159,13 @@ export function PapersPage() {
                 {preprintPapers}
               </div>
               <div className="text-gray-300 font-medium text-md">
-          {/* --- NEW: Top Publications Bubble (MODIFIED) --- */}
+                Preprints
+              </div>
+            </div>
+          </div>
+          {/* --- END OF 4-BUBBLE GRID --- */}
+
+          {/* --- NEW: Top Publications Bubble (Correct Position) --- */}
           <div className="mt-6 p-5 bg-gradient-to-br from-indigo-500/10 to-transparent rounded-2xl border border-indigo-500/30">
             {/* MODIFIED: Changed to flex-col for vertical layout, items-start for alignment */}
             <div className="flex flex-col items-center md:items-start gap-y-3">
@@ -175,6 +182,8 @@ export function PapersPage() {
             </p>
           </div>
         </div>
+        {/* --- END OF STATS SECTION (mb-20 div) --- */}
+
 
         {/* Papers List */}
         <div className="space-y-20 pb-20">
