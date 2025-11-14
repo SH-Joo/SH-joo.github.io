@@ -32,7 +32,7 @@ export const papers: Paper[] = [
     booktitle:"arxiv",
     note: "Manuscript under review. Preprint available soon.",
     model: "SUPER Decoder Block",
-    selected: "",
+    selected: "/images/SUPER_Logo.png",
     TopConference_AI: "under_review",
     content: {
       background: "Skip-connected encoder–decoder architectures still suffer from information loss, limiting recovery of fine high-frequency details.",
