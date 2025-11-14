@@ -53,9 +53,9 @@ export const papers: Paper[] = [
         text: "🔎 Under Review",
         color: "#3c4d4c",
         url: ""
-      }
+      },
     ]
-  }
+  },
 
   
   {
