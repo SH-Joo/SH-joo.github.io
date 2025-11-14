@@ -33,6 +33,7 @@ export const papers: Paper[] = [
     note: "Manuscript under review. Preprint available soon.",
     model: "SUPER Decoder Block",
     selected: "",
+    TopConference_AI: "under_review",
     content: {
       background: "Skip-connected encoder–decoder architectures still suffer from information loss, limiting recovery of fine high-frequency details.",
       motivation: "Existing U-Net variants cannot guarantee perfect reconstruction and often suppress high-frequency components unintentionally.",
@@ -71,6 +72,7 @@ export const papers: Paper[] = [
       motivation: "Most benchmarks, including SOTA, do not account for spectral bias, leading to vulnerability in detecting thin cracks.",
       solution: "Achieved significant performance improvement over SOTA through a Frequency-Aware design and a Topology-Aware Loss."
     },
+    TopJournal_Civil: "Automation_in_Construction",
     badges: [
       {
         text: "👑 SOTA (Thin Crack Segmentation)",
@@ -127,7 +129,6 @@ export const papers: Paper[] = [
         color: "#ff7300"
       }
     ],
-    TopJournal_Civil: "Automation_in_Construction"
   },
   {
     type: "conference",
