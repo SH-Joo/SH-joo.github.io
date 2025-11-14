@@ -197,8 +197,8 @@ export function HomePage() {
 
                   {/* 저자 아래: book title + year */}
                   <p className="text-gray-400 text-sm md:text-base">
-                    {paper.bookTitle && <span className="italic">{paper.bookTitle}</span>}
-                    {paper.bookTitle && paper.year && " · "}
+                    {paper.booktitle && <span className="italic">{paper.booktitle}</span>}
+                    {paper.booktitle && paper.year && " · "}
                     {paper.year && <span>{paper.year}</span>}
                   </p>
                 </div>
