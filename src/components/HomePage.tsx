@@ -238,10 +238,9 @@ export function HomePage() {
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
-                          className="flex-shrink-0 w-48 h-32 md:w-56 md:h-36 rounded-2xl overflow-hidden shadow-2xl
+                          className="flex-shrink-0 w-40 h-28 md:w-48 md:h-32 rounded-2xl overflow-hidden shadow-2xl
                                      hover:scale-105 transition-transform duration-300 cursor-pointer
                                      bg-white/5 backdrop-blur-sm border border-gray-700/50 p-4 self-stretch md:self-auto"
-                          aria-label={`${paper.model ?? "Selected"} Logo preview`}
                         >
                           <img
                             src={paper.selected}
