@@ -40,7 +40,7 @@ export const papers: Paper[] = [
     },
     badges: [
       {
-        text: "👑 SOTA (2025)",
+        text: "👑 SOTA (Image Denoising)",
         color: "#192d6e",
         url: ""
       },
@@ -75,7 +75,7 @@ export const papers: Paper[] = [
     },
     badges: [
       {
-        text: "👑 SOTA (2025)",
+        text: "👑 SOTA (Thin Crack Segmentation)",
         color: "#192d6e",
         url: "https://github.com/SH-Joo/FACS"
       }, 
