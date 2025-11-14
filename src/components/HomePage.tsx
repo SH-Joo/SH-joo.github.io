@@ -191,8 +191,16 @@ export function HomePage() {
                   <h3 className="text-white text-2xl font-semibold group-hover:text-blue-300 transition-colors font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
                     {paper.title}
                   </h3>
-                  <p className="text-gray-300 text-lg font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>{paper.author}</p>
-                  <p className="text-gray-400">{paper.note} ({paper.year})</p>
+                  <p className="text-gray-300 text-lg font-serif" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
+                    {paper.author}
+                  </p>
+
+                  {/* 저자 아래: book title + year */}
+                  <p className="text-gray-400 text-sm md:text-base">
+                    {paper.bookTitle && <span className="italic">{paper.bookTitle}</span>}
+                    {paper.bookTitle && paper.year && " · "}
+                    {paper.year && <span>{paper.year}</span>}
+                  </p>
                 </div>
 
                 {/* 하단: 좌(내용요약) / 우(로고) */}
@@ -259,6 +267,15 @@ export function HomePage() {
                     </Dialog>
                   )}
                 </div>
+
+                {/* 카드 하단 note */}
+                {paper.note && (
+                  <div className="mt-6 pt-4 border-t border-gray-700/50">
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {paper.note}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
