@@ -29,9 +29,9 @@ export const papers: Paper[] = [
     author: "Siheon Joo and Hongjo Kim",
     title: "SUPER Decoder Block for Reconstruction-Aware U-Net Variants",
     year: "2025",
+    booktitle:"arxiv",
     note: "Manuscript under review. Preprint available soon.",
     model: "SUPER Decoder Block",
-    SOTA: "SUPER-CG - 2025 SOTA for Smartphone Image Denoising",
     selected: "",
     content: {
       background: "Skip-connected encoder–decoder architectures still suffer from information loss, limiting recovery of fine high-frequency details.",
@@ -63,10 +63,8 @@ export const papers: Paper[] = [
     author: "Siheon Joo, Seokhwan Kim, and Hongjo Kim",
     title: "Frequency-Aware Crack Segmentation Network (FACS-Net) for Thin-Cracks via Topology Preservation",
     year: "2025",
-    note: "Manuscript under review. Preprint available on SSRN",
-    model: "FACS-Net",
-    SOTA: "👑 FACS-Net - 2025 SOTA for Thin Crack Segmentation",
-    project: "https://github.com/SH-Joo/FACS",
+    booktitle:"Automation in Construction",
+    note: "Manuscript under minor revision.",
     selected: "/images/FACS_Logo.png",
     content: {
       background: "Early detection of micro-cracks is crucial, but vision models struggle to identify them due to spectral bias.",
@@ -95,6 +93,7 @@ export const papers: Paper[] = [
       }
     ]
   },
+  
   {
     type: "conference",
     author: "Siheon Joo, Haeun Jung, Kyoungmin Lee, Junghyun Lee, and Seonggeon Bae",
