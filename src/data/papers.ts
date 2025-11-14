@@ -26,6 +26,40 @@ export interface Paper {
 export const papers: Paper[] = [
   {
     type: "preprint",
+    author: "Siheon Joo and Hongjo Kim",
+    title: "SUPER Decoder Block for Reconstruction-Aware U-Net Variants",
+    year: "2025",
+    note: "Manuscript under review. Preprint available soon.",
+    model: "SUPER Decoder Block",
+    SOTA: "SUPER-CG - 2025 SOTA for Smartphone Image Denoising",
+    selected: "",
+    content: {
+      background: "Skip-connected encoder–decoder architectures still suffer from information loss, limiting recovery of fine high-frequency details.",
+      motivation: "Existing U-Net variants cannot guarantee perfect reconstruction and often suppress high-frequency components unintentionally.",
+      solution: "SUPER introduces selectively suppressed perfect reconstruction, enriching representational diversity and improving thin-crack segmentation."
+    },
+    badges: [
+      {
+        text: "👑 SOTA (2025)",
+        color: "#192d6e",
+        url: ""
+      },
+      {
+        text: "📄 Paper",
+        color: "#de454a",
+        url: ""
+      },
+      {
+        text: "🔎 Under Review",
+        color: "#3c4d4c",
+        url: ""
+      }
+    ]
+  }
+
+  
+  {
+    type: "preprint",
     author: "Siheon Joo, Seokhwan Kim, and Hongjo Kim",
     title: "Frequency-Aware Crack Segmentation Network (FACS-Net) for Thin-Cracks via Topology Preservation",
     year: "2025",
