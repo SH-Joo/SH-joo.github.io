@@ -48,12 +48,12 @@ export const papers: Paper[] = [
       {
         text: "📄 Paper",
         color: "#de454a",
-        url: ""
+        url: "https://arxiv.org/abs/2511.11015"
       },
       {
         text: "🔎 Under Review",
         color: "#3c4d4c",
-        url: ""
+        url: "https://arxiv.org/abs/2511.11015"
       },
     ]
   },
