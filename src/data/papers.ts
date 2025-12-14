@@ -41,7 +41,7 @@ export const papers: Paper[] = [
     },
     badges: [
       {
-        text: "👑 SOTA (Image Denoising)",
+        text: "👑 2025 SOTA (Image Denoising)",
         color: "#192d6e",
         url: ""
       },
@@ -60,12 +60,12 @@ export const papers: Paper[] = [
 
   
   {
-    type: "preprint",
+    type: "journal",
     author: "Siheon Joo, Seokhwan Kim, and Hongjo Kim",
     title: "Frequency-Aware Crack Segmentation Network (FACS-Net) for Thin-Cracks via Topology Preservation",
     year: "2025",
     booktitle:"Automation in Construction",
-    note: "Manuscript under minor revision.",
+    note: "JCR, Civil Engineering 1/182.",
     selected: "/images/FACS_Logo.png",
     content: {
       background: "Early detection of micro-cracks is crucial, but vision models struggle to identify them due to spectral bias.",
@@ -75,7 +75,7 @@ export const papers: Paper[] = [
     TopJournal_Civil: "Automation_in_Construction",
     badges: [
       {
-        text: "👑 SOTA (Thin Crack Segmentation)",
+        text: "👑 2025 SOTA (Thin Crack Segmentation)",
         color: "#192d6e",
         url: "https://github.com/SH-Joo/FACS"
       }, 
