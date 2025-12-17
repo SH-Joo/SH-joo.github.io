@@ -87,7 +87,7 @@ export const papers: Paper[] = [
       {
         text: "📄 Paper",
         color: "#de454a",
-        url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5384487"
+        url: "https://www.sciencedirect.com/science/article/pii/S0926580525007599"
       }
     ]
   },
