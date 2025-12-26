@@ -3191,3 +3191,81 @@ html {
     transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
   }
 }
+
+/* =========================
+   Markdown formatting
+   ========================= */
+
+.markdown {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #e5e7eb; /* gray-200 */
+}
+
+/* 문단 간격 */
+.markdown p {
+  margin: 1.1rem 0;
+}
+
+/* 제목 */
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+
+.markdown h2 {
+  font-size: 1.6rem;
+}
+
+.markdown h3 {
+  font-size: 1.3rem;
+}
+
+/* 강조 */
+.markdown strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* 리스트 */
+.markdown ul,
+.markdown ol {
+  margin: 1rem 0 1rem 1.5rem;
+}
+
+.markdown li {
+  margin: 0.4rem 0;
+}
+
+/* 가로줄 */
+.markdown hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 3rem 0;
+}
+
+/* =========================
+   Image formatting
+   ========================= */
+
+.markdown img {
+  display: block;
+  margin: 2.5rem auto; /* ← 이미지 위/아래 간격 + 중앙정렬 */
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+}
+
+/* 이미지 캡션처럼 보이게 하고 싶을 때 대비 */
+.markdown img + em {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-top: -1.5rem;
+}

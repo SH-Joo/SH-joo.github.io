@@ -1,8 +1,14 @@
+// BlogPage.tsx
 import { Calendar, Tag, ArrowRight } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { blogPosts } from "../data/blog";
+import type { BlogPost } from "../data/blog";
 
-export function BlogPage() {
+type Props = {
+  onSelectPost: (post: BlogPost) => void;
+};
+
+export function BlogPage({ onSelectPost }: Props) {
   const posts = blogPosts;
 
   const formatDate = (dateString: string) => {
@@ -20,7 +26,10 @@ export function BlogPage() {
         {/* Header */}
         <div className="mb-16">
           <div className="inline-block h-1.5 w-20 bg-gradient-to-r from-[#003876] via-blue-500 to-blue-400 rounded-full mb-6"></div>
-          <h1 className="text-white mb-6 text-5xl font-bold" style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}>
+          <h1
+            className="text-white mb-6 text-5xl font-bold"
+            style={{ fontFamily: "'Georgia', 'Nanum Myeongjo', serif" }}
+          >
             Blog
           </h1>
           <p className="text-gray-300 max-w-3xl text-lg">
@@ -30,9 +39,7 @@ export function BlogPage() {
 
         {posts.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-gray-400 text-xl">
-              Coming soon...
-            </p>
+            <p className="text-gray-400 text-xl">Coming soon...</p>
           </div>
         )}
 
@@ -41,14 +48,28 @@ export function BlogPage() {
           {posts.map((post) => (
             <article
               key={post.id}
-              className="group bg-gradient-to-br from-gray-800/50 to-gray-900/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 shadow-xl hover:shadow-2xl hover:border-[#003876]/70 hover:from-gray-800/70 hover:to-gray-900/60 transition-all duration-500 overflow-hidden flex flex-col"
+              role="button"
+              tabIndex={0}
+              onClick={() => onSelectPost(post)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") onSelectPost(post);
+              }}
+              className="group cursor-pointer bg-gradient-to-br from-gray-800/50 to-gray-900/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 shadow-xl hover:shadow-2xl hover:border-[#003876]/70 hover:from-gray-800/70 hover:to-gray-900/60 transition-all duration-500 overflow-hidden flex flex-col"
             >
-              {/* Image Placeholder */}
-              <div className="h-52 bg-gradient-to-br from-[#003876]/40 to-blue-600/20 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#003876]/20 to-transparent group-hover:from-[#003876]/30 transition-all duration-500" />
-                <div className="relative z-10 text-6xl font-bold text-white/30 group-hover:text-white/50 group-hover:scale-110 transition-all duration-500">
-                  {post.title.charAt(0)}
-                </div>
+              {/* Image */}
+              <div className="h-52 bg-gray-900/30 flex items-center justify-center relative overflow-hidden">
+                {post.logo ? (
+                  <img
+                    src={post.logo}
+                    alt={`${post.title} cover`}
+                    className="w-full h-full object-contain p-4"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="relative z-10 text-6xl font-bold text-white/30">
+                    {post.title.charAt(0)}
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -86,10 +107,10 @@ export function BlogPage() {
                 </div>
 
                 {/* Read More */}
-                <button className="flex items-center gap-2.5 text-blue-300 hover:text-blue-200 hover:gap-4 transition-all font-medium">
+                <div className="flex items-center gap-2.5 text-blue-300 group-hover:text-blue-200 group-hover:gap-4 transition-all font-medium">
                   <span>Read More</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </div>
               </div>
             </article>
           ))}
