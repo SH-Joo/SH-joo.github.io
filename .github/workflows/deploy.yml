@@ -24,12 +24,15 @@ jobs:
         with:
           node-version: 18
 
+      # package-lock.json 있으면 npm ci 권장, 없으면 npm install
       - run: npm install
+
       - run: npm run build
 
+      # Vite 빌드 결과는 dist 폴더가 기본
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: build
 
   deploy:
     needs: build
