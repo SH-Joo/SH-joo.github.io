@@ -30,7 +30,7 @@ export const papers: Paper[] = [
     title: "SUPER Decoder Block for Reconstruction-Aware U-Net Variants",
     year: "2025",
     booktitle:"arxiv",
-    note: "Manuscript under review. Preprint available soon.",
+    note: "Manuscript under blind review.",
     model: "SUPER Decoder Block",
     selected: "/images/SUPER_Logo.png",
     TopConference_AI: "under_review",
