@@ -93,7 +93,7 @@
   .fc-contact{grid-column:2;grid-row:1;align-self:start;}
   .fc-about{grid-column:1 / -1;grid-row:2;min-height:0;overflow-y:auto;}
   .fc-news{padding-left:24px;border-left:2px solid var(--ink);display:flex;flex-direction:column;overflow:hidden;}
-  .fc-news-scroll{flex:1;min-height:0;overflow-x:auto;overflow-y:hidden;column-width:228px;column-gap:24px;column-rule:1px solid var(--mist);column-fill:auto;padding-top:2px;}
+  .fc-news-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:2px 12px 2px 0;}
 
   .fc-photo img{width:100%;height:clamp(140px,18vh,172px);object-fit:cover;filter:grayscale(100%) contrast(1.04);border:1px solid var(--mist);display:block;}
   .fc-photo figcaption{font-family:var(--label);text-transform:uppercase;letter-spacing:.06em;font-size:9px;color:var(--stone);margin:7px 0 14px;}
@@ -107,12 +107,24 @@
   .fc-about p{font-size:13.5px;line-height:1.62;color:var(--graphite);margin-bottom:11px;text-align:justify;hyphens:auto;}
   .fc-about p.dropcap::first-letter{font-family:var(--display);font-weight:600;font-size:3em;line-height:.74;float:left;padding:6px 8px 0 0;color:var(--accent);}
 
-  /* News (clean self-contained items, 2-col, vertical scroll) */
-  .news{padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--mist);}
-  .news-kicker{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:9px;font-weight:600;color:var(--accent);margin-bottom:4px;break-after:avoid;}
-  .news-head{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.22;break-inside:avoid;break-after:avoid;}
-  .news-img{width:100%;height:auto;max-height:280px;object-fit:cover;object-position:center;filter:grayscale(100%) contrast(1.03);border:1px solid var(--mist);margin:9px 0 11px;display:block;break-inside:avoid;}
-  .news-text{font-family:var(--body);font-size:12px;line-height:1.58;color:var(--graphite);text-align:justify;hyphens:auto;margin-top:8px;orphans:2;widows:2;}
+  /* News — newspaper section: lead story + alternating photo briefs (vertical scroll) */
+  .news{padding:0 0 15px;margin-bottom:15px;border-bottom:1px solid var(--mist);}
+  .news:last-child{border-bottom:0;margin-bottom:0;}
+  .news-kicker{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:9px;font-weight:600;color:var(--accent);margin-bottom:5px;}
+  .news-head{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.16;}
+  .news-text{font-family:var(--body);font-size:12.5px;line-height:1.6;color:var(--graphite);text-align:justify;hyphens:auto;margin-top:7px;}
+  .news-img{width:100%;height:auto;object-fit:cover;object-position:center;filter:grayscale(100%) contrast(1.03);border:1px solid var(--mist);display:block;}
+  .news > .news-img{max-height:230px;margin:9px 0 11px;}
+  /* lead story (first, full-width, large) */
+  .news.lead{padding-bottom:18px;margin-bottom:18px;}
+  .news.lead .news-head{font-size:25px;line-height:1.06;}
+  .news.lead > .news-img{max-height:330px;margin:11px 0 13px;}
+  .news.lead .news-text{font-size:13.5px;line-height:1.62;margin-top:9px;}
+  /* side-by-side briefs: photo left / right, alternating */
+  .news.left,.news.right{display:grid;column-gap:16px;align-items:start;}
+  .news.left{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);}
+  .news.right{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);}
+  .news.left > .news-img,.news.right > .news-img{max-height:175px;margin:2px 0 0;}
 
   .statbar{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 26px;padding:12px 0 2px;border-top:1px solid var(--mist);margin-top:6px;}
   .statbar .stat{display:flex;align-items:baseline;gap:8px;}
@@ -400,36 +412,39 @@
         <div class="fc-news">
           <div class="col-head">News</div>
           <div class="fc-news-scroll">
-            <div class="news">
+            <article class="news lead">
               <div class="news-kicker">2026 · Research · Automation in Construction</div>
               <div class="news-head">FACS-Net: seeing the thin cracks others miss</div>
               <img class="news-img" src="public/images/FACS-net(mini).png" onerror="this.onerror=null;this.src='public/blog/251222/Fig2.png'" alt="" />
               <div class="news-text">Hair-thin cracks slip through the spectral bias of ordinary networks, so most detectors simply miss them. FACS-Net pairs frequency-aware features with a topology-aware <b>CT-Loss</b> that rewards getting a crack's connectivity right — pushing thin-crack IoU from ≈0.1–0.2 up to <b>0.466</b> on CrackVision12K. The work appears in <em>Automation in Construction</em> (JCR 1/182).</div>
-            </div>
-            <div class="news">
-              <div class="news-kicker">Mar 2026 · Honor</div>
-              <div class="news-head">Honoured with the CEE Best Paper of the Year</div>
+            </article>
+            <article class="news right">
+              <div class="news-body">
+                <div class="news-kicker">Mar 2026 · Honor</div>
+                <div class="news-head">Honoured with the CEE Best Paper of the Year</div>
+                <div class="news-text">FACS-Net &amp; CT-Loss were named <b>CEE Best Paper of the Year (2026)</b> by Yonsei's BK21 group in Civil &amp; Environmental Engineering. The recognition landed in my very first semester — a welcome vote of confidence for work that aims at both methodological depth and real construction-site value.</div>
+              </div>
               <img class="news-img" src="public/images/CEE_Best_2026.jpg" onerror="this.style.display='none'" alt="" />
-              <div class="news-text">FACS-Net &amp; CT-Loss were named <b>CEE Best Paper of the Year (2026)</b> by Yonsei's BK21 group in Civil &amp; Environmental Engineering. The recognition landed in my very first semester — a welcome vote of confidence for work that aims at both methodological depth and real construction-site value.</div>
-            </div>
-            <div class="news">
+            </article>
+            <article class="news">
               <div class="news-kicker">Jun 2026 · Conference · ASCE I3CE</div>
               <div class="news-head">Motion Masking, presented at I3CE 2026</div>
               <img class="news-img" src="public/images/i3ce2026.jpg" onerror="this.style.display='none'" alt="" />
               <div class="news-text">At <b>ASCE I3CE 2026</b> in Incheon I presented a training-free motion-masking method for robust visual inspection. By suppressing moving foreground before analysis, it keeps structural assessment stable on shaky, real-world footage — with no retraining required.</div>
-            </div>
-            <div class="news">
-              <div class="news-kicker">2025 · Lab</div>
-              <div class="news-head">Started the Ph.D. track at the Smart Infrastructure Lab</div>
+            </article>
+            <article class="news left">
               <img class="news-img" src="public/images/lab.jpg" onerror="this.style.display='none'" alt="" />
-              <div class="news-text">In fall 2025 I joined Yonsei's <b>Smart Infrastructure Lab</b> to begin the integrated MS–Ph.D. track. The focus: computer vision and AI that survive the messy reality of construction sites, where field precision and compute budgets are always in tension.</div>
-            </div>
-            <div class="news">
+              <div class="news-body">
+                <div class="news-kicker">2025 · Lab</div>
+                <div class="news-head">Started the Ph.D. track at the Smart Infrastructure Lab</div>
+                <div class="news-text">In fall 2025 I joined Yonsei's <b>Smart Infrastructure Lab</b> to begin the integrated MS–Ph.D. track. The focus: computer vision and AI that survive the messy reality of construction sites, where field precision and compute budgets are always in tension.</div>
+              </div>
+            </article>
+            <article class="news">
               <div class="news-kicker">Jan 2024 · Award</div>
               <div class="news-head">Best Paper Award at ICSMB 2024, Fukuoka</div>
-              <img class="news-img" src="public/news/icsmb2024.jpg" onerror="this.style.display='none'" alt="" />
               <div class="news-text">My undergraduate research earned the <b>Best Paper Award</b> at the 9th ICSMB 2024 in Fukuoka, Japan — an early sign that careful engineering of vision models pays off, and the start of the direction I'm still pursuing today.</div>
-            </div>
+            </article>
           </div>
         </div>
       </div>
