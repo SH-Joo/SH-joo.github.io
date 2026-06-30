@@ -20,19 +20,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      # Static publish: the approved design (design-draft.html) is the site.
+      # No Vite/React build — just assemble index.html + referenced assets.
+      - name: Assemble static site
+        run: |
+          mkdir -p _site/src _site/public
+          cp design-draft.html _site/index.html
+          cp -r src/images _site/src/images
+          cp -r public/. _site/public/
+          touch _site/.nojekyll
+          ls -R _site | head -n 60
 
-      # package-lock.json 있으면 npm ci 권장, 없으면 npm install
-      - run: npm install
-
-      - run: npm run build
-
-      # Vite 빌드 결과는 dist 폴더가 기본
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: _site
 
   deploy:
     needs: build

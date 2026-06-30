@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Siheon Joo — Computer Vision &amp; AI for Smart Infrastructure</title>
+<meta name="description" content="Siheon Joo — Ph.D. Candidate in computer vision and AI for smart infrastructure, Smart Infrastructure Lab, Yonsei University. Publications, projects, and CV." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Siheon Joo — Computer Vision &amp; AI for Smart Infrastructure" />
+<meta property="og:description" content="Ph.D. Candidate, Smart Infrastructure Lab, Yonsei University. Crack segmentation (FACS-Net), robust visual inspection, and more." />
+<meta name="author" content="Siheon Joo" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b1b1b; --graphite:#333333; --slate:#555555; --stone:#777777;
+    --ash:#a6a29b; --mist:#d3cfc7; --pearl:#e4e2db; --paper:#e8e7e1;
+    --accent:#1f3a5f; --accent-deep:#16293f; --accent-soft:#edf0f5;
+    --display:'Newsreader','Nanum Myeongjo',Georgia,serif;
+    --body:'Source Serif 4','Nanum Myeongjo',Georgia,serif;
+    --label:'Libre Franklin','Apple SD Gothic Neo',sans-serif;
+    --nav-h:54px; --foot-h:42px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:16px;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 34px;width:100%;}
+  ::-webkit-scrollbar{width:7px;height:10px;}
+  ::-webkit-scrollbar-thumb{background:var(--mist);}
+  ::-webkit-scrollbar-track{background:transparent;}
+
+  /* ---------- NAV ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:70;background:rgba(232,231,225,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--mist);height:var(--nav-h);}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);}
+  .nav-name{font-family:var(--display);font-weight:600;font-size:17px;cursor:pointer;}
+  .nav-name b{color:var(--accent);}
+  .nav-links{display:flex;align-items:center;gap:2px;}
+  .nav-links a{font-family:var(--label);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:500;color:var(--slate);padding:0 13px;cursor:pointer;transition:color .15s;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cv{margin-left:8px;background:var(--accent);color:var(--paper)!important;padding:8px 14px!important;letter-spacing:.1em;font-weight:600;transition:background .15s;}
+  .nav-cv:hover{background:var(--accent-deep);}
+
+  /* ---------- FOOTBAR ---------- */
+  .footbar{position:fixed;left:0;right:0;bottom:0;z-index:70;height:var(--foot-h);background:var(--ink);color:var(--paper);}
+  .footbar .fb{display:flex;align-items:center;justify-content:space-between;height:var(--foot-h);}
+  .footbar span,.footbar a{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:#e9e6e1;}
+  .footbar .fb-links a{margin-left:16px;border-bottom:1px solid rgba(255,255,255,.25);}
+  .footbar .fb-links a:hover{border-color:#fff;color:#fff;}
+
+  /* ---------- DECK ---------- */
+  .deck{margin-top:var(--nav-h);height:calc(100vh - var(--nav-h) - var(--foot-h));overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+  .deck::-webkit-scrollbar{width:0;}
+  .page{height:100%;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:flex-start;padding:20px 0 16px;}
+
+  .pagedots{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:65;display:flex;flex-direction:column;gap:12px;}
+  .pagedot{width:9px;height:9px;border:1px solid var(--accent);border-radius:50%;background:transparent;cursor:pointer;transition:.2s;padding:0;}
+  .pagedot.on{background:var(--accent);transform:scale(1.25);}
+
+  /* ---------- HEADERS ---------- */
+  .section-head{display:flex;align-items:center;gap:13px;margin-bottom:15px;}
+  .section-head .no{font-family:var(--display);font-style:italic;font-size:15px;color:var(--accent);}
+  .section-head .t{font-family:var(--label);text-transform:uppercase;letter-spacing:.2em;font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;}
+  .section-head .line{flex:1;height:1px;background:linear-gradient(90deg,var(--accent) 0,var(--accent) 30px,var(--mist) 30px);}
+  .col-head{font-family:var(--label);text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:600;color:var(--ink);padding-bottom:8px;border-bottom:2px solid var(--accent);margin-bottom:13px;}
+
+  .pageframe{display:flex;flex-direction:column;flex:1;min-height:0;}
+  .runhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--mist);padding-bottom:9px;margin-bottom:15px;font-family:var(--label);text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--stone);}
+  .runhead b{color:var(--accent);}
+
+  /* ===================================================== */
+  /*  PAGE 1 — FRONT                                       */
+  /* ===================================================== */
+  #front .wrap{display:flex;flex-direction:column;flex:1;min-height:0;}
+  .rule-hair{border-top:1px solid var(--ink);}
+  .rule-thick{height:6px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);}
+  .mh{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:11px 0 12px;}
+  .mh-logo{display:flex;align-items:center;}
+  .mh-logo img{height:44px;width:auto;object-fit:contain;}
+  .mh-ear.right{text-align:right;font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:10px;line-height:1.7;color:var(--stone);}
+  .mh-ear.right span{display:block;}
+  .mh-ear.right .r1{color:var(--accent);font-weight:600;}
+  .mh-center{text-align:center;}
+  .mh-name{font-family:var(--display);font-weight:600;font-size:clamp(32px,4.6vw,50px);line-height:1;letter-spacing:.01em;}
+  .mh-name .dot{color:var(--accent);}
+  .mh-tag{font-family:var(--display);font-style:italic;font-size:15px;color:var(--slate);margin-top:8px;}
+
+  .front-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:0;flex:1;min-height:0;margin-top:12px;}
+  .front-cols>div{min-height:0;}
+  .fc-bio{display:grid;grid-template-columns:138px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);gap:14px 18px;padding-right:24px;overflow:hidden;}
+  .fc-photo{grid-column:1;grid-row:1;}
+  .fc-contact{grid-column:2;grid-row:1;align-self:start;}
+  .fc-about{grid-column:1 / -1;grid-row:2;min-height:0;overflow-y:auto;}
+  .fc-news{padding-left:24px;border-left:2px solid var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+  .fc-news-scroll{flex:1;min-height:0;overflow-x:auto;overflow-y:hidden;column-width:228px;column-gap:24px;column-rule:1px solid var(--mist);column-fill:auto;padding-top:2px;}
+
+  .fc-photo img{width:100%;height:clamp(140px,18vh,172px);object-fit:cover;filter:grayscale(100%) contrast(1.04);border:1px solid var(--mist);display:block;}
+  .fc-photo figcaption{font-family:var(--label);text-transform:uppercase;letter-spacing:.06em;font-size:9px;color:var(--stone);margin:7px 0 14px;}
+  .darkbox{background:var(--ink);color:var(--paper);padding:14px 15px 16px;}
+  .darkbox h4{font-family:var(--label);text-transform:uppercase;letter-spacing:.16em;font-size:9px;color:#9fb0c4;margin-bottom:9px;}
+  .darkbox .crow{font-family:var(--label);font-size:11px;letter-spacing:.01em;color:#efece6;padding:3.5px 0;}
+  .darkbox a{color:#fff;border-bottom:1px solid rgba(255,255,255,.28);}
+  .darkbox a:hover{border-color:#fff;}
+
+  .fc-about .about-head{font-family:var(--label);text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:600;color:var(--ink);padding-bottom:8px;border-bottom:2px solid var(--accent);margin-bottom:13px;}
+  .fc-about p{font-size:13.5px;line-height:1.62;color:var(--graphite);margin-bottom:11px;text-align:justify;hyphens:auto;}
+  .fc-about p.dropcap::first-letter{font-family:var(--display);font-weight:600;font-size:3em;line-height:.74;float:left;padding:6px 8px 0 0;color:var(--accent);}
+
+  /* News (clean self-contained items, 2-col, vertical scroll) */
+  .news{break-inside:avoid;padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--mist);}
+  .news-kicker{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:9px;font-weight:600;color:var(--accent);margin-bottom:4px;}
+  .news-head{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.22;}
+  .news-img{width:100%;height:112px;object-fit:cover;filter:grayscale(100%) contrast(1.03);border:1px solid var(--mist);margin:9px 0 0;display:block;background:#fff;}
+  .news-text{font-family:var(--body);font-size:12px;line-height:1.55;color:var(--slate);text-align:justify;hyphens:auto;margin-top:8px;}
+
+  .statbar{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 26px;padding:12px 0 2px;border-top:1px solid var(--mist);margin-top:6px;}
+  .statbar .stat{display:flex;align-items:baseline;gap:8px;}
+  .statbar .n{font-family:var(--display);font-weight:600;font-size:24px;color:var(--accent);line-height:1;}
+  .statbar .l{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:10.5px;color:var(--stone);}
+  .statbar .sep{color:var(--mist);}
+  .statbar .note{margin-left:auto;font-family:var(--body);font-style:italic;font-size:11.5px;color:var(--ash);}
+  .statbar .note a{color:var(--accent);}
+
+  /* ===================================================== */
+  /*  PAGE 2 — PROFILE + PUBLICATIONS                      */
+  /* ===================================================== */
+  .profile2{display:grid;grid-template-columns:1fr 2fr;gap:0;flex:1;min-height:0;}
+  .profile2>div{min-height:0;}
+  .pcol-left{overflow-y:auto;padding-right:32px;}
+  .pcol-right{display:flex;flex-direction:column;min-height:0;border-left:1px solid var(--mist);padding-left:32px;}
+  .edu-deg{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.25;}
+  .edu-meta{font-family:var(--label);text-transform:uppercase;letter-spacing:.06em;font-size:10.5px;color:var(--accent);margin-top:3px;}
+  .edu-sub{font-family:var(--body);font-style:italic;font-size:13.5px;color:var(--slate);margin-top:2px;}
+  .blockgap{margin-top:26px;}
+  .honors-block{margin-top:30px;border-top:1px solid var(--mist);padding-top:22px;}
+  .skills{display:flex;flex-wrap:wrap;gap:7px;}
+  .skill{font-family:var(--label);font-size:11px;letter-spacing:.04em;color:var(--graphite);border:1px solid var(--mist);padding:5px 10px;transition:.15s;}
+  .skill:hover{border-color:var(--accent);color:var(--accent);}
+  .stacklist{display:flex;flex-direction:column;gap:16px;}
+  .brief-kicker{font-family:var(--label);text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:600;color:var(--accent);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .brief-kicker::before{content:"";width:16px;height:2px;background:var(--accent);}
+  .brief-headline{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.2;margin-bottom:5px;}
+  .brief-sub{font-family:var(--body);font-style:italic;font-size:13px;line-height:1.45;color:var(--slate);}
+
+  .pubtools{display:flex;flex-wrap:wrap;align-items:center;gap:9px 10px;margin-bottom:12px;}
+  .pubtools input{font-family:var(--label);font-size:12px;letter-spacing:.02em;padding:8px 12px;border:1px solid var(--mist);background:#fff;color:var(--ink);min-width:150px;flex:1;}
+  .pubtools input:focus{outline:none;border-color:var(--accent);}
+  .pubfilters{display:flex;gap:5px;flex-wrap:wrap;}
+  .pf{font-family:var(--label);text-transform:uppercase;letter-spacing:.06em;font-size:9.5px;font-weight:600;color:var(--slate);background:transparent;border:1px solid var(--mist);padding:7px 9px;cursor:pointer;transition:.15s;}
+  .pf:hover{border-color:var(--accent);color:var(--accent);}
+  .pf.on{background:var(--accent);color:var(--paper);border-color:var(--accent);}
+  .publist{flex:1;min-height:0;column-width:300px;column-gap:30px;column-rule:1px solid var(--mist);column-fill:auto;overflow-x:auto;overflow-y:hidden;padding-bottom:8px;}
+  .year-div{display:flex;align-items:center;gap:10px;margin:4px 0 2px;break-after:avoid;break-inside:avoid;}
+  .year-div.first{margin-top:0;}
+  .year-div .y{font-family:var(--display);font-weight:600;font-size:16px;color:var(--accent);}
+  .year-div .line{flex:1;height:1px;background:var(--mist);}
+  .pub{display:grid;grid-template-columns:1.7rem 1fr;gap:0 12px;padding:10px 0;border-top:1px solid var(--mist);break-inside:avoid;}
+  .year-div + .pub{border-top:0;}
+  .pub-no{font-family:var(--display);font-style:italic;font-size:12px;color:var(--accent);padding-top:3px;}
+  .pub[data-selected="1"] .pub-no::after{content:"★";display:block;font-style:normal;font-size:10px;color:var(--accent);margin-top:2px;}
+  .pub-title{font-family:var(--display);font-weight:500;font-size:14.5px;line-height:1.25;color:var(--ink);}
+  .pub-authors{font-family:var(--body);font-style:italic;font-size:12px;color:var(--slate);margin-top:2px;}
+  .pub-authors b{font-style:normal;font-weight:600;color:var(--ink);}
+  .pub-meta{font-family:var(--label);text-transform:uppercase;letter-spacing:.05em;font-size:9.5px;color:var(--stone);margin-top:4px;}
+  .pub-cite{font-family:var(--label);font-size:9px;color:var(--ash);}
+  .pub-cite b{color:var(--accent);}
+  .pub-links{margin-top:6px;display:flex;flex-wrap:wrap;gap:7px;align-items:center;}
+  .pub-empty{font-family:var(--body);font-style:italic;font-size:14px;color:var(--ash);padding:18px 0;display:none;}
+
+  .chip{font-family:var(--label);text-transform:uppercase;letter-spacing:.07em;font-size:9.5px;font-weight:600;color:var(--paper);background:var(--accent);padding:2px 8px;}
+  .chip.hl{background:var(--ink);}
+  .lnk{font-family:var(--label);text-transform:uppercase;letter-spacing:.07em;font-size:10px;font-weight:500;color:var(--slate);border-bottom:1px solid var(--mist);padding-bottom:1px;cursor:pointer;}
+  .lnk:hover{color:var(--accent);border-color:var(--accent);}
+  .print-url{display:none;}
+  .cv-stats{display:none;}
+  .cv-edu{display:none;}
+  .mh-ear.right .lab-short{display:none;}
+  .tag-short{display:none;}
+  .logo-mark{display:none;}
+
+  /* ===================================================== */
+  /*  PAGE 3 — PROJECTS                                    */
+  /* ===================================================== */
+  .proj-cols{display:grid;grid-template-columns:1fr 2fr;gap:0;flex:1;min-height:0;}
+  .proj-cols>div{min-height:0;}
+  .proj-list{overflow-y:auto;padding-right:30px;}
+  .proj-list .col-head{position:sticky;top:0;background:var(--paper);z-index:1;}
+  .proj-item{padding:15px 0;border-top:1px solid var(--mist);cursor:pointer;position:relative;padding-left:14px;}
+  .proj-item:first-of-type{border-top:0;}
+  .proj-item::before{content:"";position:absolute;left:0;top:15px;bottom:15px;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .18s;}
+  .proj-item:hover::before,.proj-item.on::before{transform:scaleY(1);}
+  .pi-kicker{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:9.5px;font-weight:600;color:var(--accent);margin-bottom:5px;}
+  .pi-head{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.2;margin-bottom:4px;}
+  .proj-item.on .pi-head{color:var(--accent);}
+  .pi-dek{font-family:var(--body);font-style:italic;font-size:13px;line-height:1.45;color:var(--slate);}
+
+  .proj-article{border-left:1px solid var(--mist);padding:0 0 0 34px;overflow:hidden;display:flex;flex-direction:column;}
+  .proj-doc{flex:1;min-height:0;display:flex;flex-direction:column;}
+  .proj-kicker{font-family:var(--label);text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:600;color:var(--accent);margin-bottom:11px;}
+  .proj-headline{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.2vw,38px);line-height:1.13;letter-spacing:-.01em;margin-bottom:12px;}
+  .proj-byline{font-family:var(--label);text-transform:uppercase;letter-spacing:.05em;font-size:10.5px;color:var(--stone);}
+  .proj-byline b{color:var(--ink);}
+  .proj-toprule{margin-top:14px;padding-bottom:16px;border-bottom:2px solid var(--accent);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .proj-2col{flex:1;min-height:0;column-width:300px;column-gap:30px;column-rule:1px solid var(--mist);column-fill:auto;overflow-x:auto;overflow-y:hidden;margin-top:14px;}
+  .proj-2col p{font-family:var(--body);font-size:14px;line-height:1.6;color:var(--graphite);margin-bottom:11px;text-align:justify;hyphens:auto;}
+  .proj-2col .proj-lead::first-letter{font-family:var(--display);font-weight:600;font-size:3.1em;line-height:.72;float:left;padding:6px 9px 0 0;color:var(--accent);}
+  .proj-2col .fig{margin:0 0 12px;break-inside:avoid;}
+  .proj-2col .fig img{width:100%;border:1px solid var(--mist);}
+  .proj-2col .fig figcaption{font-family:var(--label);text-transform:uppercase;letter-spacing:.06em;font-size:9px;color:var(--stone);margin-top:6px;}
+  .runin{font-family:var(--display);font-weight:600;color:var(--ink);}
+
+  /* dark mode (newsprint at night) */
+  .nav-dark{cursor:pointer;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--mist);padding:3px 9px;font-family:var(--label);text-transform:uppercase;letter-spacing:.07em;font-size:9.5px;color:var(--stone);}
+  .nav-dark:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-dark .dm-ico{font-size:12px;line-height:1;}
+  body.dark{--paper:#16161a;--ink:#ece9e3;--graphite:#d7d3cb;--slate:#aea99f;--stone:#8b867c;--ash:#6e6a61;--mist:#37352f;--pearl:#201f1b;--accent:#a9c2dd;--accent-deep:#c3d5e9;--accent-soft:#20242b;}
+  body.dark nav{background:rgba(22,22,26,.94);}
+  body.dark .footbar,body.dark .darkbox{background:#0c0c0e;}
+  body.dark .pcard-img{background:#ece9e3;}
+
+  /* ---- horizontal slide scrollers: white slide area + navy scrollbar ---- */
+  .fc-news-scroll,.publist,.proj-2col{background:#fff;scrollbar-color:var(--accent) #fff;scrollbar-width:thin;}
+  .fc-news-scroll::-webkit-scrollbar,.publist::-webkit-scrollbar,.proj-2col::-webkit-scrollbar{height:13px;width:13px;}
+  .fc-news-scroll::-webkit-scrollbar-track,.publist::-webkit-scrollbar-track,.proj-2col::-webkit-scrollbar-track{background:#fff;}
+  .fc-news-scroll::-webkit-scrollbar-thumb,.publist::-webkit-scrollbar-thumb,.proj-2col::-webkit-scrollbar-thumb{background:var(--accent);border:3px solid #fff;border-radius:8px;}
+  .fc-news-scroll::-webkit-scrollbar-thumb:hover,.publist::-webkit-scrollbar-thumb:hover,.proj-2col::-webkit-scrollbar-thumb:hover{background:var(--accent-deep);}
+  body.dark .fc-news-scroll,body.dark .publist,body.dark .proj-2col{background:#101014;scrollbar-color:var(--accent) #101014;}
+  body.dark .fc-news-scroll::-webkit-scrollbar-track,body.dark .publist::-webkit-scrollbar-track,body.dark .proj-2col::-webkit-scrollbar-track{background:#101014;}
+  body.dark .fc-news-scroll::-webkit-scrollbar-thumb,body.dark .publist::-webkit-scrollbar-thumb,body.dark .proj-2col::-webkit-scrollbar-thumb{background:var(--accent);border-color:#101014;}
+
+  /* Narrow screens: stack to a single readable column, keep page-flip (snap) */
+  @media (max-width:860px){
+    .deck{scroll-snap-type:y proximity;}
+    .page{height:auto;min-height:100%;overflow:visible;padding:20px 0 24px;}
+    .pageframe,#front .wrap{display:block;}
+    .front-cols,.profile2,.proj-cols{display:block;}
+    .fc-bio{grid-template-columns:120px 1fr;grid-template-rows:auto auto;padding-right:0;overflow:visible;}
+    .fc-about{overflow:visible;border-top:1px solid var(--mist);margin-top:12px;padding-top:12px;}
+    .fc-news{border-left:0;margin-top:16px;}
+    .fc-news .col-head{position:static;}
+    .fc-news-scroll{column-width:auto;column-count:2;overflow:visible;height:auto;}
+    .pcol-left{overflow:visible;padding:0;}
+    .pcol-right{overflow:visible;border-left:0;border-top:1px solid var(--mist);margin-top:16px;padding:16px 0 0;}
+    .publist{column-width:auto;column-count:1;overflow:visible;height:auto;min-height:0;flex:none;}
+    .proj-list{overflow:visible;padding:0;}
+    .proj-list .col-head{position:static;}
+    .proj-article{overflow:visible;display:block;border-left:0;border-top:1px solid var(--mist);margin-top:16px;padding:16px 0 0;}
+    .proj-doc{display:block;}
+    .proj-2col{column-width:auto;column-count:1;overflow:visible;flex:none;}
+    .mh-ear.right .lab-full{display:none;}
+    .mh-ear.right .lab-short{display:inline;}
+    .mh-tag{display:none;}
+    .fc-news{display:none;}
+    .statbar{gap:3px 12px;padding:10px 0 2px;}
+    .statbar .n{font-size:15px;}
+    .statbar .l{font-size:8.5px;letter-spacing:.05em;}
+    .statbar .sep{font-size:12px;}
+    .statbar .note{display:none;}
+  }
+
+  @page{size:A4;margin:14mm 16mm;}
+  /* ---------- PRINT = CV (clean newspaper) ---------- */
+  @media print{
+    :root{--paper:#fff;}
+    html{font-size:10pt;}
+    body{background:#fff;color:#000;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    nav,.footbar,.pagedots,.statbar,.pubtools,.fc-news,.mh-tag,#projects,.runhead,
+    .pub .chip,.pub-links .lnk[onclick],.fc-photo figcaption,.crow-scholar{display:none !important;}
+    .deck{margin-top:0;height:auto;overflow:visible;scroll-snap-type:none;display:block;}
+    .page{height:auto;overflow:visible;padding:0 0 4px;display:block;page-break-after:auto;}
+    #front .wrap,.front-cols{display:block;}
+    .pageframe{display:block;}
+    .profile2{display:block;margin-top:16px;}
+    .mh{padding:0 0 7px;grid-template-columns:1fr auto 1fr;justify-items:stretch;text-align:left;}
+    .mh-center{text-align:center;}
+    .mh-ear.right{text-align:right;display:block;}
+    .mh-ear.right span{display:block;}
+    .mh-ear.right span + span::before{display:none;}
+    .mh-name{font-size:25pt;}
+    .mh-logo img{height:36px;}
+    .rule-thick{margin-bottom:8px;border-top-width:2px;}
+    /* CV header: Contact left, photo right */
+    .front-cols{margin-top:6px;}
+    /* BLOCK 1 — Profile / About / Contact (3 columns) */
+    .fc-bio{display:grid;grid-template-columns:150px 1fr;grid-template-rows:auto auto;gap:0 22px;overflow:visible;padding:0;align-items:start;}
+    .fc-photo{grid-column:1;grid-row:1;padding:0 0 12px;}
+    .fc-contact{grid-column:1;grid-row:2;}
+    .fc-about{display:none;}
+    .cv-edu{display:block;grid-column:2;grid-row:1 / span 2;border-left:1px solid #ccc;padding-left:22px;}
+    .cv-edu .edu-deg{font-size:11.5pt;line-height:1.25;}
+    .cv-edu .edu-meta,.cv-edu .edu-sub{font-size:8.5pt;}
+    .cv-edu .brief{margin-top:7px;}
+    .cv-edu .brief-headline{font-size:10.5pt;line-height:1.2;}
+    .cv-edu .brief-kicker{font-size:8pt;}
+    .cv-edu .brief-sub{font-size:8.5pt;line-height:1.35;}
+    .fc-photo img{height:150px;}
+    .fc-about .about-head{border-bottom-color:#000;margin-bottom:7px;}
+    .fc-about p{font-size:9.5pt;line-height:1.5;margin-bottom:7px;text-align:left;}
+    .fc-about p.dropcap::first-letter{font-size:2.2em;padding:3px 7px 0 0;}
+    .fc-contact.darkbox{background:transparent !important;color:#000 !important;border-left:0;padding:0;}
+    .fc-contact h4{color:#000;border-bottom:1px solid #999;padding-bottom:3px;margin-bottom:5px;}
+    .fc-contact .crow{color:#000;padding:1.5px 0;}
+    .fc-contact a{color:#000 !important;border:none !important;}
+    .fc-contact .print-url{display:block;color:#444;font-size:8pt;}
+    /* by the numbers */
+    .statbar{border-color:#000;margin-top:13px;padding:9px 0 0;gap:4px 20px;}
+    .statbar .n{font-size:17pt;}
+    /* sections — a little breathing room */
+    .section-head{margin:14px 0 7px;}
+    .section-head .line{background:#bbb;}
+    .col-head{margin:0 0 8px;border-color:#000;color:#000;}
+    .blockgap{margin-top:18px;}
+    .stacklist{gap:9px;}
+    .edu-meta,.edu-sub{margin-top:1px;}
+    /* Education + Honors moved beside the photo (cv-edu); hide original column */
+    .pcol-left{display:none;}
+    .cv-stats{display:none;}
+    /* Publications — full width, right below */
+    .pcol-right{overflow:visible;border:0;padding:0;margin-top:16px;}
+    .publist{column-width:auto;column-count:1;overflow:visible;height:auto;flex:none;}
+    .year-div{margin:7px 0 0;}
+    .pub{padding:3px 0;border-color:#ddd;}
+    .pub-title{font-size:10.5pt;line-height:1.2;}
+    .pub-authors{font-size:9pt;margin-top:1px;}
+    .pub-meta{font-size:8pt;margin-top:1px;}
+    .pub-links{margin-top:2px;}
+    .pub-links .lnk{color:#000 !important;border:none !important;font-size:8pt;}
+    .pub,.brief{break-inside:avoid;}
+    a{color:#000 !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <div class="nav-name" onclick="navTo('front')">Siheon <b>Joo</b></div>
+  <div class="nav-links">
+    <a onclick="navTo('front')">Front</a>
+    <a onclick="navTo('profile')">Profile</a>
+    <a onclick="navTo('projects')">Projects</a>
+    <a class="nav-dark" onclick="toggleDark()" title="Toggle dark mode"><span class="dm-ico">☾</span><span class="dm-txt">Dark</span></a>
+    <a class="nav-cv" onclick="window.print()">Download CV</a>
+  </div>
+</div></nav>
+
+<div class="pagedots" id="pagedots">
+  <button class="pagedot on" onclick="navTo('front')" title="Front"></button>
+  <button class="pagedot" onclick="navTo('profile')" title="Profile"></button>
+  <button class="pagedot" onclick="navTo('projects')" title="Projects"></button>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- ===== PAGE 1 — FRONT ===== -->
+  <section class="page" id="front">
+    <div class="wrap">
+      <div class="rule-hair"></div>
+      <header class="mh">
+        <div class="mh-logo"><img class="logo-wide" src="src/images/logo_yonsei.png" alt="Yonsei University" /><img class="logo-mark" src="src/images/logo.png" alt="Yonsei University" /></div>
+        <div class="mh-center">
+          <div class="mh-name">Siheon Joo<span class="dot">.</span></div>
+          <div class="mh-tag"><span class="tag-full">Computer Vision &amp; Artificial Intelligence, applied to Smart Infrastructure.</span><span class="tag-short">CV &amp; AI</span></div>
+        </div>
+        <div class="mh-ear right"><span class="r1">Ph.D. Candidate</span><span><span class="lab-full">Smart Infrastructure Lab</span><span class="lab-short">SIL</span></span><span>Yonsei University</span></div>
+      </header>
+      <div class="rule-thick"></div>
+
+      <div class="front-cols">
+        <!-- COL 1: bio (photo top-left, contact top-right, About below spanning) -->
+        <div class="fc-bio">
+          <div class="fc-photo">
+            <figure style="margin:0">
+              <img src="src/images/profile_image.jpg" alt="Siheon Joo" />
+            </figure>
+          </div>
+          <div class="fc-contact darkbox">
+            <h4>Contact</h4>
+            <div class="crow">Email: <a href="mailto:sh.joo@yonsei.ac.kr">sh.joo@yonsei.ac.kr</a></div>
+            <div class="crow">Phone: +82 10 8690 7661</div>
+            <div class="crow crow-scholar"><a href="https://scholar.google.com/citations?user=9v82QXYAAAAJ&hl=ko" target="_blank">Google Scholar →</a><span class="print-url"> scholar.google.com/citations?user=9v82QXYAAAAJ</span></div>
+            <div class="crow"><a href="https://github.com/SH-Joo" target="_blank">GitHub →</a><span class="print-url"> github.com/SH-Joo</span></div>
+          </div>
+          <div class="fc-about">
+            <div class="about-head">About Me</div>
+            <p class="dropcap">I am a researcher in computer vision and artificial intelligence, working to bring them into the field of smart infrastructure.</p>
+            <p>On a construction site, more delicate and precise AI prediction ties directly to safety, productivity, and cost. But precision is never free — every gain in accuracy trades against computation. The model that matters, then, is not the most powerful one; it is the one that fits its purpose and earns its keep.</p>
+            <p>That is the engineering I care about: AI vision that holds up in the real conditions of the field while cutting cost and raising productivity — practical, precise, and built for where it actually runs.</p>
+          </div>
+          <div class="cv-edu">
+            <div class="section-head"><span class="no">1.</span><span class="t">Education</span><span class="line"></span></div>
+            <div class="edu-deg">Ph.D. Candidate</div>
+            <div class="edu-meta">Yonsei University · Sep 2025 – Present</div>
+            <div class="edu-sub">Civil &amp; Environmental Eng. · Smart Infrastructure Lab (SIL)</div>
+            <div class="section-head" style="margin-top:14px"><span class="no">2.</span><span class="t">Honors &amp; Awards</span><span class="line"></span></div>
+            <div class="brief"><div class="brief-kicker">Honor · 2026</div><div class="brief-headline">CEE Best Paper of the Year (2026)</div><div class="brief-sub">Yonsei University BK21 Education &amp; Research Group, Civil &amp; Environmental Engineering.</div></div>
+            <div class="brief" style="margin-top:8px"><div class="brief-kicker">Award · 2024</div><div class="brief-headline">Best Paper Award, ICSMB 2024</div><div class="brief-sub">International Conference on Small and Medium Business, Fukuoka, Japan.</div></div>
+          </div>
+        </div>
+
+        <!-- COL 2: news (2-col, vertical scroll) -->
+        <div class="fc-news">
+          <div class="col-head">News</div>
+          <div class="fc-news-scroll">
+            <div class="news">
+              <div class="news-kicker">2026 · Research · Automation in Construction</div>
+              <div class="news-head">FACS-Net: seeing the thin cracks others miss</div>
+              <img class="news-img" src="public/images/FACS-net(mini).png" onerror="this.onerror=null;this.src='public/blog/251222/Fig2.png'" alt="" />
+              <div class="news-text">Hair-thin cracks slip through the spectral bias of ordinary networks, so most detectors simply miss them. FACS-Net pairs frequency-aware features with a topology-aware <b>CT-Loss</b> that rewards getting a crack's connectivity right — pushing thin-crack IoU from ≈0.1–0.2 up to <b>0.466</b> on CrackVision12K. The work appears in <em>Automation in Construction</em> (JCR 1/182).</div>
+            </div>
+            <div class="news">
+              <div class="news-kicker">Mar 2026 · Honor</div>
+              <div class="news-head">Honoured with the CEE Best Paper of the Year</div>
+              <img class="news-img" src="public/images/CEE_Best_2026.jpg" onerror="this.style.display='none'" alt="" />
+              <div class="news-text">FACS-Net &amp; CT-Loss were named <b>CEE Best Paper of the Year (2026)</b> by Yonsei's BK21 group in Civil &amp; Environmental Engineering. The recognition landed in my very first semester — a welcome vote of confidence for work that aims at both methodological depth and real construction-site value.</div>
+            </div>
+            <div class="news">
+              <div class="news-kicker">Jun 2026 · Conference · ASCE I3CE</div>
+              <div class="news-head">Motion Masking, presented at I3CE 2026</div>
+              <img class="news-img" src="public/images/i3ce2026.jpg" onerror="this.style.display='none'" alt="" />
+              <div class="news-text">At <b>ASCE I3CE 2026</b> in Incheon I presented a training-free motion-masking method for robust visual inspection. By suppressing moving foreground before analysis, it keeps structural assessment stable on shaky, real-world footage — with no retraining required.</div>
+            </div>
+            <div class="news">
+              <div class="news-kicker">2025 · Lab</div>
+              <div class="news-head">Started the Ph.D. track at the Smart Infrastructure Lab</div>
+              <img class="news-img" src="public/images/lab.jpg" onerror="this.style.display='none'" alt="" />
+              <div class="news-text">In fall 2025 I joined Yonsei's <b>Smart Infrastructure Lab</b> to begin the integrated MS–Ph.D. track. The focus: computer vision and AI that survive the messy reality of construction sites, where field precision and compute budgets are always in tension.</div>
+            </div>
+            <div class="news">
+              <div class="news-kicker">Jan 2024 · Award</div>
+              <div class="news-head">Best Paper Award at ICSMB 2024, Fukuoka</div>
+              <img class="news-img" src="public/news/icsmb2024.jpg" onerror="this.style.display='none'" alt="" />
+              <div class="news-text">My undergraduate research earned the <b>Best Paper Award</b> at the 9th ICSMB 2024 in Fukuoka, Japan — an early sign that careful engineering of vision models pays off, and the start of the direction I'm still pursuing today.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="statbar">
+        <div class="stat"><span class="n">13</span><span class="l">Publications</span></div><span class="sep">·</span>
+        <div class="stat"><span class="n">2</span><span class="l">Journal</span></div><span class="sep">·</span>
+        <div class="stat"><span class="n">9</span><span class="l">Conference</span></div><span class="sep">·</span>
+        <div class="stat"><span class="n">2</span><span class="l">Awards</span></div>
+        <span class="note">Full profile on <a href="https://scholar.google.com/citations?user=9v82QXYAAAAJ&hl=ko" target="_blank">Google Scholar</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 2 — PROFILE + PUBLICATIONS ===== -->
+  <section class="page" id="profile">
+    <div class="wrap pageframe">
+      <div class="runhead"><span>Siheon <b>Joo</b></span><span><b>Profile</b> · Education · Honors · Publications</span></div>
+      <div class="profile2">
+        <div class="pcol-left">
+          <div class="cv-block edu-block">
+            <div class="section-head"><span class="no">I.</span><span class="t">Education</span><span class="line"></span></div>
+            <div class="edu-deg">Ph.D. Candidate</div>
+            <div class="edu-meta">Yonsei University · Sep 2025 – Present</div>
+            <div class="edu-sub">Civil &amp; Environmental Eng. · Smart Infrastructure Lab (SIL)</div>
+            <div class="cv-stats">
+              <div class="cv-stats-t">By the Numbers</div>
+              <div class="cv-stats-v">Publications 13 · Journal 2 · Conference 9 · Awards 2</div>
+            </div>
+          </div>
+          <div class="cv-block honors-block">
+          <div class="section-head"><span class="no">II.</span><span class="t">Honors &amp; Awards</span><span class="line"></span></div>
+          <div class="stacklist">
+            <div class="brief">
+              <div class="brief-kicker">Honor · 2026</div>
+              <div class="brief-headline">CEE Best Paper of the Year (2026)</div>
+              <div class="brief-sub">Yonsei University BK21 Education &amp; Research Group, Civil &amp; Environmental Engineering.</div>
+            </div>
+            <div class="brief">
+              <div class="brief-kicker">Award · 2024</div>
+              <div class="brief-headline">Best Paper Award, ICSMB 2024</div>
+              <div class="brief-sub">International Conference on Small and Medium Business, Fukuoka, Japan.</div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="pcol-right">
+          <div class="col-head">Publications</div>
+          <div class="pubtools">
+            <input id="pubSearch" type="text" placeholder="Search title, author, venue…" oninput="filterPubs()" />
+            <div class="pubfilters">
+              <button class="pf on" data-f="all" onclick="setFilter(this)">All · 13</button>
+              <button class="pf" data-f="selected" onclick="setFilter(this)">Selected ★</button>
+              <button class="pf" data-f="journal" onclick="setFilter(this)">Journal · 2</button>
+              <button class="pf" data-f="conference" onclick="setFilter(this)">Conf. · 9</button>
+              <button class="pf" data-f="preprint" onclick="setFilter(this)">Preprint · 2</button>
+            </div>
+          </div>
+
+          <div class="publist" id="publist">
+            <div class="year-div first"><span class="y">2026</span><span class="line"></span></div>
+            <div class="pub" data-type="journal" data-year="2026" data-selected="1">
+              <div class="pub-no">01</div>
+              <div>
+                <div class="pub-title">Frequency-Aware Crack Segmentation Network (FACS-Net) and Crack Topology Loss (CT-Loss) for Thin Cracks</div>
+                <div class="pub-authors"><b>Siheon Joo</b>, Seokhwan Kim, Hongjo Kim</div>
+                <div class="pub-meta">Automation in Construction · JCR 1/182</div>
+                <div class="pub-links"><span class="chip">SOTA</span><span class="chip hl">CEE Best Paper</span><a class="lnk" onclick="navTo('projects')">Project</a><a class="lnk" href="https://doi.org/10.1016/j.autcon.2025.106719" target="_blank">Paper</a></div>
+              </div>
+            </div>
+            <div class="pub" data-type="journal" data-year="2026">
+              <div class="pub-no">02</div>
+              <div>
+                <div class="pub-title">Tiny Object Detection using Distance-guided, Signed and Densified Learning (DSDL) for Construction-Site Safety Monitoring</div>
+                <div class="pub-authors">Seokhwan Kim, Taegeon Kim, K. Choi, <b>Siheon Joo</b>, Hongjo Kim</div>
+                <div class="pub-meta">Automation in Construction · 187, 106929</div>
+              </div>
+            </div>
+            <div class="pub" data-type="preprint" data-year="2026">
+              <div class="pub-no">03</div>
+              <div>
+                <div class="pub-title">An Implementation of the Crack Topology Score with Extensions</div>
+                <div class="pub-authors"><b>Siheon Joo</b>, Hongjo Kim</div>
+                <div class="pub-meta">arXiv preprint</div>
+                <div class="pub-links"><a class="lnk" href="https://arxiv.org/abs/2601.10762" target="_blank">Paper</a></div>
+              </div>
+            </div>
+            <div class="pub" data-type="conference" data-year="2026">
+              <div class="pub-no">04</div>
+              <div>
+                <div class="pub-title">Motion Masking of Dynamic Visual Disturbances for Robust Visual Inspection</div>
+                <div class="pub-authors"><b>Siheon Joo</b>, Duyong Park, Hongjo Kim</div>
+                <div class="pub-meta">ASCE Int'l Conf. on Computing in Civil Engineering (I3CE) · Incheon</div>
+                <div class="pub-links"><a class="lnk" href="https://www.i3ce2026.com/" target="_blank">Conf</a></div>
+              </div>
+            </div>
+            <div class="year-div"><span class="y">2025</span><span class="line"></span></div>
+            <div class="pub" data-type="preprint" data-year="2025">
+              <div class="pub-no">04</div>
+              <div>
+                <div class="pub-title">SUPER Decoder Block for Reconstruction-Aware U-Net Variants</div>
+                <div class="pub-authors"><b>Siheon Joo</b>, Hongjo Kim</div>
+                <div class="pub-meta">arXiv · Under Review</div>
+                <div class="pub-links"><span class="chip">SOTA</span><a class="lnk" href="https://arxiv.org/abs/2511.11015" target="_blank">Paper</a></div>
+              </div>
+            </div>
+
+            <div class="year-div"><span class="y">2024</span><span class="line"></span></div>
+            <div class="pub" data-type="conference" data-year="2024">
+              <div class="pub-no">03</div>
+              <div>
+                <div class="pub-title">CPH White-Box Cartoon GAN: A Patch-Based Style-Swap Approach</div>
+                <div class="pub-authors"><b>Siheon Joo</b>, Haeun Jung, Kyoungmin Lee, Junghyun Lee, Seonggeon Bae</div>
+                <div class="pub-meta">IEEE ICECET · Undergraduate</div>
+                <div class="pub-links"><a class="lnk" href="https://doi.org/10.1109/ICECET61485.2024.10698008" target="_blank">DOI</a></div>
+              </div>
+            </div>
+            <div class="pub" data-type="conference" data-year="2024">
+              <div class="pub-no">04</div>
+              <div>
+                <div class="pub-title">Enhancing Super-Resolution: Filter Size Optimization in Deep Learning Architectures</div>
+                <div class="pub-authors"><b>Siheon Joo</b>, Kyoungmin Lee, Stellar Choi, Haeun Jung, Seonggeon Bae</div>
+                <div class="pub-meta">ICSMB · Fukuoka</div>
+                <div class="pub-links"><span class="chip hl">Best Paper</span></div>
+              </div>
+            </div>
+            <div class="pub" data-type="conference" data-year="2024">
+              <div class="pub-no">05</div>
+              <div>
+                <div class="pub-title">Style-Blend for Enhancing Color Style Transfer</div>
+                <div class="pub-authors"><b>Siheon Joo</b>, Haeun Jung, Junghyun Lee, Seonggeon Bae</div>
+                <div class="pub-meta">IWAT · Jeju</div>
+              </div>
+            </div>
+            <div class="pub" data-type="conference" data-year="2024">
+              <div class="pub-no">06</div>
+              <div>
+                <div class="pub-title">Enhanced Generation Through Structure-Preserving Style Transfer with SLIC</div>
+                <div class="pub-authors">Kyoungmin Lee, <b>Siheon Joo</b>, Haeun Jung, Seonggeon Bae</div>
+                <div class="pub-meta">IEEE ICECET · Undergraduate</div>
+                <div class="pub-links"><a class="lnk" href="https://doi.org/10.1109/ICECET61485.2024.10698447" target="_blank">DOI</a></div>
+              </div>
+            </div>
+            <div class="pub" data-type="conference" data-year="2024">
+              <div class="pub-no">07</div>
+              <div>
+                <div class="pub-title">Improving Style Transfer and Minimizing Artifacts through Enhanced VGG Perceptual Loss</div>
+                <div class="pub-authors">Kyoungmin Lee, <b>Siheon Joo</b>, Stellar Choi, Haeun Jung, Seonggeon Bae</div>
+                <div class="pub-meta">ICSMB · Fukuoka</div>
+              </div>
+            </div>
+            <div class="pub" data-type="conference" data-year="2024">
+              <div class="pub-no">08</div>
+              <div>
+                <div class="pub-title">Error Improvement in Line Art via Alpha Mask Segmentation Applied to Pix2Pix</div>
+                <div class="pub-authors">Stellar Choi, <b>Siheon Joo</b>, Kyoungmin Lee, Haeun Jung, Seonggeon Bae</div>
+                <div class="pub-meta">ICSMB · Fukuoka</div>
+              </div>
+            </div>
+
+            <div class="year-div"><span class="y">2023</span><span class="line"></span></div>
+            <div class="pub" data-type="conference" data-year="2023">
+              <div class="pub-no">09</div>
+              <div>
+                <div class="pub-title">High-Quality Style Transfer Using Edge-Enhanced Gaussian Smoothing (EEGST)</div>
+                <div class="pub-authors">Kyoungmin Lee, Stellar Choi, <b>Siheon Joo</b>, Haeun Jung, Seonggeon Bae</div>
+                <div class="pub-meta">IEEE ICECCE · Undergraduate</div>
+                <div class="pub-links"><a class="lnk" href="https://doi.org/10.1109/ICECCE61019.2023.10442483" target="_blank">DOI</a></div>
+              </div>
+            </div>
+            <div class="pub" data-type="conference" data-year="2023">
+              <div class="pub-no">10</div>
+              <div>
+                <div class="pub-title">Reducing Checkerboard Artifacts in Style Transfer Using Gaussian Smoothing</div>
+                <div class="pub-authors">Kyoungmin Lee, <b>Siheon Joo</b>, Stellar Choi, Haeun Jung, Seonggeon Bae</div>
+                <div class="pub-meta">JKAIA · Undergraduate</div>
+              </div>
+            </div>
+          </div>
+          <div class="pub-empty" id="pubEmpty">No publications match your search.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 3 — PROJECTS ===== -->
+  <section class="page" id="projects">
+    <div class="wrap pageframe">
+      <div class="runhead"><span>Siheon <b>Joo</b></span><span><b>Projects</b> · Research Features</span></div>
+      <div class="proj-cols">
+        <div class="proj-list">
+          <div class="col-head">Projects</div>
+          <div class="proj-item on" onclick="selectProject('facs', this)">
+            <div class="pi-kicker">2025 · Automation in Construction</div>
+            <div class="pi-head">FACS-Net &amp; CT-Loss</div>
+            <div class="pi-dek">Frequency-aware crack segmentation for the thinnest cracks.</div>
+          </div>
+          <div class="proj-item" onclick="selectProject('super', this)">
+            <div class="pi-kicker">2025 · arXiv (Under Review)</div>
+            <div class="pi-head">SUPER Decoder Block</div>
+            <div class="pi-dek">Reconstruction-aware decoding for U-Net variants.</div>
+          </div>
+        </div>
+
+        <div class="proj-article">
+          <div class="proj-doc" id="proj-facs">
+            <div class="proj-kicker">Computer Vision · Automation in Construction · 2026</div>
+            <h1 class="proj-headline">Teaching Vision Models to See the Cracks They Used to Miss</h1>
+            <div class="proj-byline">By <b>Siheon Joo</b>, Seokhwan Kim &amp; Hongjo Kim · JCR Civil 1/182</div>
+            <div class="proj-toprule">
+              <span class="chip">2025 SOTA · Thin Crack</span>
+              <span class="chip hl">CEE Best Paper 2026</span>
+              <a class="lnk" href="https://doi.org/10.1016/j.autcon.2025.106719" target="_blank">Paper</a>
+              <a class="lnk" href="https://github.com/SH-Joo/FACS" target="_blank">Code</a>
+              <a class="lnk" href="https://doi.org/10.6084/m9.figshare.29849432" target="_blank">Models</a>
+            </div>
+            <div class="proj-2col">
+              <figure class="fig"><img src="public/blog/251222/Fig2.png" alt="" /><figcaption>FACS-Net recovers continuous thin-crack topology where baselines fragment.</figcaption></figure>
+              <p class="proj-lead">Early detection of micro-cracks can mean the difference between routine maintenance and catastrophic failure — yet the models we trust to inspect bridges and tunnels share a blind spot: the thinner the crack, the more likely they are to miss it.</p>
+              <p><span class="runin">The blind spot.</span> Convolutional networks favour low-frequency content, while a hair-thin crack lives in the high-frequency band. This <em>spectral bias</em> leaves fine cracks fragmented — destroying the continuity that matters for safety assessment.</p>
+              <p><span class="runin">The method.</span> FACS-Net pairs a hybrid CNN–Transformer encoder (ResNet50 + MixVision Transformer) with a frequency-aware decoder (CBAM attention + an FPCM Fourier-modulation module), trained with CT-Loss — BCE + a SEMEDA edge term + a differentiable soft-CTS continuity term.</p>
+              <p><span class="runin">The result.</span> On CrackVision12K, <b>IoU 0.663 / CTS 0.651</b>; on the thinnest cracks (≤ 2 px), <b>IoU 0.466 / CTS 0.945</b> — a <b>+0.306 IoU</b> / <b>+0.360 CTS</b> gain over the prior state of the art, robust across OmniCrack30K. Published in <em>Automation in Construction</em>; CEE Best Paper of the Year (2026).</p>
+            </div>
+          </div>
+
+          <div class="proj-doc" id="proj-super" style="display:none">
+            <div class="proj-kicker">Computer Vision · arXiv · 2025</div>
+            <h1 class="proj-headline">SUPER Decoder Block for Reconstruction-Aware U-Net Variants</h1>
+            <div class="proj-byline">By <b>Siheon Joo</b> &amp; Hongjo Kim · Manuscript under blind review</div>
+            <div class="proj-toprule">
+              <span class="chip">2025 SOTA · Denoising</span>
+              <a class="lnk" href="https://arxiv.org/abs/2511.11015" target="_blank">Paper</a>
+            </div>
+            <div class="proj-2col">
+              <p class="proj-lead">A decoder block that recovers the fine detail ordinary U-Nets discard, reconstructing high-frequency structure others suppress. The full feature write-up will appear here once the manuscript clears review. <em>(placeholder)</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ FOOTBAR ============ -->
+<div class="footbar"><div class="wrap fb">
+  <span>© 2026 Siheon Joo · Smart Infrastructure Lab, Yonsei University</span>
+  <span class="fb-links"><a href="mailto:sh.joo@yonsei.ac.kr">Email</a><a href="https://scholar.google.com/citations?user=9v82QXYAAAAJ&hl=ko" target="_blank">Scholar</a><a href="https://github.com/SH-Joo" target="_blank">GitHub</a></span>
+</div></div>
+
+<script>
+  function navTo(id){ var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }
+  function selectProject(id, el){
+    document.querySelectorAll('.proj-doc').forEach(function(d){ d.style.display='none'; });
+    var t=document.getElementById('proj-'+id); if(t) t.style.display='';
+    document.querySelectorAll('.proj-item').forEach(function(it){ it.classList.remove('on'); });
+    if(el) el.classList.add('on');
+  }
+
+  var curFilter='all';
+  function setFilter(btn){
+    curFilter=btn.getAttribute('data-f');
+    var bs=document.querySelectorAll('.pf');
+    for(var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+    btn.classList.add('on');
+    filterPubs();
+  }
+  function filterPubs(){
+    var list=document.getElementById('publist'); if(!list) return;
+    var q=(document.getElementById('pubSearch').value||'').toLowerCase();
+    var items=Array.prototype.slice.call(list.querySelectorAll('.pub'));
+    var n=0;
+    items.forEach(function(it){
+      var okF=(curFilter==='all') || (curFilter==='selected' ? it.getAttribute('data-selected')==='1' : it.getAttribute('data-type')===curFilter);
+      var okQ=!q||it.textContent.toLowerCase().indexOf(q)>=0;
+      var show=okF&&okQ;
+      it.style.display=show?'':'none';
+      if(show){ n++; var no=it.querySelector('.pub-no'); if(no) no.textContent=('0'+n).slice(-2); }
+    });
+    var divs=Array.prototype.slice.call(list.querySelectorAll('.year-div'));
+    divs.forEach(function(d){
+      var sib=d.nextElementSibling, vis=false;
+      while(sib && !sib.classList.contains('year-div')){
+        if(sib.classList.contains('pub') && sib.style.display!=='none'){ vis=true; break; }
+        sib=sib.nextElementSibling;
+      }
+      d.style.display=vis?'':'none';
+    });
+    document.getElementById('pubEmpty').style.display=(n===0)?'block':'none';
+  }
+
+  var deck=document.getElementById('deck');
+  var pages=Array.prototype.slice.call(document.querySelectorAll('#deck .page'));
+  var dots=Array.prototype.slice.call(document.querySelectorAll('.pagedot'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var i=pages.indexOf(e.target);
+          dots.forEach(function(d){d.classList.remove('on');});
+          if(dots[i]) dots[i].classList.add('on');
+        }
+      });
+    },{root:deck,threshold:0.55});
+    pages.forEach(function(p){io.observe(p);});
+  }
+  filterPubs();
+
+  function toggleDark(){
+    var on=document.body.classList.toggle('dark');
+    var t=document.querySelector('.nav-dark .dm-txt'); if(t) t.textContent=on?'Light':'Dark';
+    var i=document.querySelector('.nav-dark .dm-ico'); if(i) i.textContent=on?'☀':'☾';
+  }
+
+  function citePub(el){
+    var p=el.closest('.pub'); if(!p) return;
+    var g=function(s){var e=p.querySelector(s);return e?e.textContent.trim().replace(/\s+/g,' '):'';};
+    var title=g('.pub-title'), authors=g('.pub-authors'), meta=g('.pub-meta'), year=p.getAttribute('data-year')||'', type=p.getAttribute('data-type')||'';
+    var head=type==='journal'?'@article':(type==='conference'?'@inproceedings':'@misc');
+    var last=((authors.split(',')[0]||'joo').trim().split(' ').pop()||'joo').toLowerCase();
+    var bib=head+'{'+last+year+',\n  author = {'+authors+'},\n  title  = {'+title+'},\n  year   = {'+year+'},\n  note   = {'+meta+'}\n}';
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(bib); }
+    var t=el.textContent; el.textContent='Copied!'; setTimeout(function(){ el.textContent=t; }, 1200);
+  }
+  (function(){
+    var pubs=document.querySelectorAll('#publist .pub');
+    pubs.forEach(function(p){
+      var inner=p.children[1]; if(!inner) return;
+      var box=inner.querySelector('.pub-links');
+      if(!box){ box=document.createElement('div'); box.className='pub-links'; inner.appendChild(box); }
+      var c=document.createElement('a'); c.className='lnk'; c.style.cursor='pointer'; c.textContent='Cite';
+      c.addEventListener('click', function(){ citePub(c); });
+      box.appendChild(c);
+    });
+  })();
+
+  /* Multicol scrollers don't repaint their column rules / item dividers when the
+     viewport ratio changes (Chromium keeps stale divider positions). Force a
+     re-layout on resize so every divider tracks its content again. */
+  (function(){
+    var sel='.fc-news-scroll,.publist,.proj-2col', t;
+    function reflow(){
+      document.querySelectorAll(sel).forEach(function(el){
+        el.style.columnWidth='auto'; void el.offsetWidth; el.style.columnWidth='';
+      });
+    }
+    window.addEventListener('resize', function(){
+      if(t) cancelAnimationFrame(t);
+      t=requestAnimationFrame(reflow);
+    });
+  })();
+
+  /* Live citation counts from OpenAlex (browser-direct, CORS-enabled).
+     Shown only when a publication is matched AND has >0 citations, so the page
+     stays clean while counts are zero and self-updates as they accrue. */
+  (function(){
+    var API='https://api.openalex.org/works?filter=authorships.author.id:A5104249477'
+          +'&per-page=200&select=doi,cited_by_count&mailto=amki1027@yonsei.ac.kr';
+    function keyFromHref(href){
+      if(!href) return null;
+      var d=href.match(/doi\.org\/(10\.[^?#\s]+)/i); if(d) return d[1].toLowerCase();
+      var a=href.match(/arxiv\.org\/abs\/([^?#\/\s]+)/i); if(a) return ('10.48550/arxiv.'+a[1]).toLowerCase();
+      return null;
+    }
+    fetch(API).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+      if(!j || !j.results) return;
+      var map={};
+      j.results.forEach(function(w){
+        if(w.doi){ var k=w.doi.replace(/^https?:\/\/doi\.org\//i,'').toLowerCase(); map[k]=w.cited_by_count||0; }
+      });
+      document.querySelectorAll('#publist .pub').forEach(function(p){
+        var n=null, links=p.querySelectorAll('a[href]');
+        for(var i=0;i<links.length;i++){ var k=keyFromHref(links[i].getAttribute('href')); if(k && map[k]!=null){ n=map[k]; break; } }
+        if(n==null || n<=0) return;
+        var inner=p.children[1]; if(!inner || inner.querySelector('.pub-cite')) return;
+        var box=inner.querySelector('.pub-links') || inner;
+        var s=document.createElement('span'); s.className='pub-cite'; s.innerHTML='Cited <b>'+n+'</b>';
+        box.appendChild(s);
+      });
+    }).catch(function(){});
+  })();
+</script>
+
+</body>
+</html>
